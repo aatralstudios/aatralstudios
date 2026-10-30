@@ -342,11 +342,11 @@ export default function IndustriesWeServe() {
             </div>
           </div>
 
-          {/* 60% Right Region: Title, Description, Features, Outcome & Actions */}
+          {/* 60% Right Region: Title, Description, Outcome, Features & Actions */}
           <div
             className="industry-card-body"
             style={{
-              padding: '24px 28px',
+              padding: '26px 28px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -355,7 +355,7 @@ export default function IndustriesWeServe() {
           >
             {/* Header: Title & Description */}
             <div>
-              <h4 className="font-display" style={{ fontSize: '19px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', lineHeight: 1.25 }}>
+              <h4 className="font-display" style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '6px', lineHeight: 1.25 }}>
                 Engineered for {selected.name}
               </h4>
               <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
@@ -363,9 +363,44 @@ export default function IndustriesWeServe() {
               </p>
             </div>
 
-            {/* Features & Ideal For Container (Clean 2-Column Grid) */}
+            {/* 1. The Commercial Outcome Box - Extended till the end (Full Width) */}
             <div
               style={{
+                width: '100%',
+                padding: '13px 18px',
+                background: 'var(--accent-soft)',
+                border: '1px solid rgba(217, 119, 70, 0.22)',
+                borderRadius: '12px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '10.5px',
+                  fontWeight: 700,
+                  color: 'var(--accent)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.6px',
+                  marginBottom: '4px',
+                }}
+              >
+                The Commercial Outcome
+              </div>
+              <div
+                style={{
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                  lineHeight: 1.5,
+                }}
+              >
+                {selected.businessImpact}
+              </div>
+            </div>
+
+            {/* 2. Tailored Features Included Box - Filled Horizontally (Full Width) */}
+            <div
+              style={{
+                width: '100%',
                 background: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: '12px',
@@ -389,49 +424,50 @@ export default function IndustriesWeServe() {
                   <IconComponent size={14} />
                 </div>
                 <div>
-                  <h5 style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+                  <h5 style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
                     Tailored Features Included
                   </h5>
-                  <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
                     Bespoke architecture for {selected.name}
                   </span>
                 </div>
               </div>
 
-              {/* 2-Column Feature Checklist */}
+              {/* Features Checklist - Filled Horizontally across 2 Columns */}
               <div
                 className="industry-features-grid"
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '8px 16px',
+                  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                  gap: '9px 18px',
                   marginBottom: '14px',
+                  width: '100%',
                 }}
               >
                 {selected.keyFeatures.map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '7px', fontSize: '12px', color: 'var(--text-primary)' }}>
-                    <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '12px', color: 'var(--text-primary)' }}>
+                    <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2.5px' }} />
                     <span style={{ fontWeight: 500, lineHeight: 1.35 }}>{feat}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Ideal For Badges */}
-              <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(232, 225, 213, 0.8)', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '9.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+              {/* Ideal For Badges - Filled Horizontally */}
+              <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(232, 225, 213, 0.85)', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', width: '100%' }}>
+                <span style={{ fontSize: '9.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.6px', flexShrink: 0 }}>
                   Ideal For:
                 </span>
-                <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {selected.idealFor.map((item, idx) => (
                     <span
                       key={idx}
                       style={{
-                        fontSize: '10.5px',
+                        fontSize: '11px',
                         fontWeight: 600,
                         color: 'var(--primary)',
                         background: '#FFFFFF',
                         border: '1px solid var(--border-subtle)',
-                        padding: '2px 8px',
+                        padding: '2px 9px',
                         borderRadius: 'var(--radius-full)',
                       }}
                     >
@@ -442,36 +478,15 @@ export default function IndustriesWeServe() {
               </div>
             </div>
 
-            {/* Commercial Outcome Strip */}
-            <div
-              style={{
-                padding: '11px 16px',
-                background: 'var(--accent-soft)',
-                border: '1px solid rgba(217, 119, 70, 0.25)',
-                borderRadius: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div style={{ fontSize: '10px', fontWeight: 800, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
-                Outcome:
-              </div>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.4, flex: 1 }}>
-                {selected.businessImpact}
-              </div>
-            </div>
-
-            {/* Action Buttons Row */}
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }} className="industry-cta-row">
+            {/* 3. Action Buttons - Placed in the exact same line side-by-side */}
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }} className="industry-cta-row">
               <a
                 href="#contact"
                 className="btn-glow"
-                style={{ padding: '10px 20px', fontSize: '12.5px' }}
+                style={{ padding: '11px 22px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '7px' }}
               >
                 <span>Build For {selected.name}</span>
-                <ArrowRight size={13} />
+                <ArrowRight size={14} />
               </a>
 
               <a
@@ -479,9 +494,9 @@ export default function IndustriesWeServe() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary"
-                style={{ padding: '10px 16px', fontSize: '12.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                style={{ padding: '11px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '7px' }}
               >
-                <WhatsAppIcon size={15} color="#25D366" />
+                <WhatsAppIcon size={16} color="#25D366" />
                 <span>WhatsApp Quick Chat</span>
               </a>
             </div>
