@@ -84,7 +84,7 @@ export default function Hero() {
           <h1
             className="font-display"
             style={{
-              fontSize: 'clamp(2.1rem, 6.8vw, 4.3rem)',
+              fontSize: 'clamp(2rem, 6.2vw, 4.1rem)',
               fontWeight: 800,
               lineHeight: 1.15,
               letterSpacing: '-1px',
@@ -94,12 +94,13 @@ export default function Hero() {
               wordBreak: 'break-word',
             }}
           >
-            Websites people <br className="desktop-only" />
+            Where creativity <br className="desktop-only" />
             <span className="gradient-accent" style={{ display: 'inline-block' }}>
-              actually remember.
-            </span>
+              meets code.
+            </span>{' '}
             <br className="desktop-only" />
-            Built to win trust.
+            Where businesses <br className="desktop-only" />
+            meet possibilities.
           </h1>
 
           {/* Short, Punchy, Professional Subheading */}
