@@ -82,7 +82,7 @@ export default function Hero() {
         <div style={{ maxWidth: '540px', textAlign: 'left' }}>
           {/* High-Impact Headline */}
           <h1
-            className="font-display"
+            className="font-display hero-title"
             style={{
               fontSize: 'clamp(1.75rem, 3.8vw, 2.9rem)',
               fontWeight: 800,
@@ -103,8 +103,9 @@ export default function Hero() {
             meet possibilities.
           </h1>
 
-          {/* Short, Punchy, Professional Subheading */}
+          {/* Short, Punchy, Professional Subheading / Tagline */}
           <p
+            className="hero-tagline"
             style={{
               fontSize: 'clamp(0.88rem, 1.15vw, 1.05rem)',
               color: 'var(--text-secondary)',
@@ -222,6 +223,14 @@ export default function Hero() {
         @media (max-width: 768px) {
           .desktop-only {
             display: none !important;
+          }
+          .hero-title {
+            font-size: clamp(1.95rem, 5.5vw, 2.35rem) !important;
+            line-height: 1.18 !important;
+          }
+          .hero-tagline {
+            font-size: clamp(1rem, 2.8vw, 1.08rem) !important;
+            line-height: 1.58 !important;
           }
         }
         @media (max-width: 600px) {
