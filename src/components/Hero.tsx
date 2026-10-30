@@ -191,7 +191,7 @@ export default function Hero() {
 
       {/* Gentle Scroll Indicator */}
       <div
-        onClick={() => handleScrollTo('industries')}
+        onClick={() => handleScrollTo('process')}
         style={{
           position: 'absolute',
           bottom: '12px',
@@ -207,7 +207,7 @@ export default function Hero() {
         }}
         className="desktop-only"
       >
-        <span>Scroll to explore industries</span>
+        <span>Scroll to explore roadmap</span>
         <ChevronDown size={14} style={{ animation: 'bounceSlow 2s infinite' }} />
       </div>
 

@@ -25,11 +25,11 @@ export default function HomePage() {
         {/* 1. Hero: Positioning & Immediate Value */}
         <Hero />
 
-        {/* 2. Industries We Serve: Tailored Features for Real Estate, Healthcare, Dining, Retail & Corporate */}
-        <IndustriesWeServe />
-
-        {/* 3. 4-Stage Process: How We Work With You */}
+        {/* 2. 4-Stage Process: How We Work With You */}
         <ProcessTimeline />
+
+        {/* 3. Industries We Serve: Tailored Features for Real Estate, Healthcare, Dining, Retail & Corporate */}
+        <IndustriesWeServe />
 
         {/* 4. Contact Funnel: Direct Project Brief Intake */}
         <ContactFunnel />

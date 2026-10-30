@@ -76,15 +76,6 @@ export default function Navbar() {
           className="desktop-nav"
         >
           <a
-            href="#industries"
-            onClick={(e) => handleNavJump(e, 'industries')}
-            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-          >
-            Industries We Serve
-          </a>
-          <a
             href="#process"
             onClick={(e) => handleNavJump(e, 'process')}
             style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
@@ -92,6 +83,15 @@ export default function Navbar() {
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
             How We Work
+          </a>
+          <a
+            href="#industries"
+            onClick={(e) => handleNavJump(e, 'industries')}
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Industries We Serve
           </a>
         </nav>
 
@@ -178,18 +178,18 @@ export default function Navbar() {
           }}
         >
           <a
-            href="#industries"
-            onClick={(e) => handleNavJump(e, 'industries')}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
-          >
-            Industries We Serve
-          </a>
-          <a
             href="#process"
             onClick={(e) => handleNavJump(e, 'process')}
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             How We Work
+          </a>
+          <a
+            href="#industries"
+            onClick={(e) => handleNavJump(e, 'industries')}
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+          >
+            Industries We Serve
           </a>
           <a
             href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20project!"
