@@ -342,15 +342,15 @@ export default function IndustriesWeServe() {
             </div>
           </div>
 
-          {/* 60% Right Region: Title, Description, Outcome, Features & Actions */}
+          {/* 60% Right Region: Title, Description, Features, Outcome & Actions */}
           <div
             className="industry-card-body"
             style={{
-              padding: '26px 28px',
+              padding: '24px 28px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              gap: '18px',
+              gap: '16px',
             }}
           >
             {/* Header: Title & Description */}
@@ -363,125 +363,127 @@ export default function IndustriesWeServe() {
               </p>
             </div>
 
-            {/* Sub-grid: Commercial Outcome + Buttons & Features + Ideal For */}
+            {/* Features & Ideal For Container (Clean 2-Column Grid) */}
             <div
-              className="industry-content-subgrid"
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 1fr)',
-                gap: '20px',
-                alignItems: 'start',
+                background: 'var(--bg-secondary)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '12px',
+                padding: '16px 18px',
               }}
             >
-              {/* Left Column: Commercial Outcome & Action Buttons */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                 <div
                   style={{
-                    padding: '12px 16px',
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: '10px',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '7px',
+                    background: 'var(--primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#FFFFFF',
+                    flexShrink: 0,
                   }}
                 >
-                  <div style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '3px' }}>
-                    The Commercial Outcome
-                  </div>
-                  <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.45 }}>
-                    {selected.businessImpact}
-                  </div>
+                  <IconComponent size={14} />
                 </div>
-
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }} className="industry-cta-row">
-                  <a
-                    href="#contact"
-                    className="btn-glow"
-                    style={{ padding: '10px 18px', fontSize: '12.5px' }}
-                  >
-                    <span>Build For {selected.name}</span>
-                    <ArrowRight size={13} />
-                  </a>
-
-                  <a
-                    href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business!"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary"
-                    style={{ padding: '10px 14px', fontSize: '12.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                  >
-                    <WhatsAppIcon size={15} color="#25D366" />
-                    <span>WhatsApp</span>
-                  </a>
+                <div>
+                  <h5 style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+                    Tailored Features Included
+                  </h5>
+                  <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
+                    Bespoke architecture for {selected.name}
+                  </span>
                 </div>
               </div>
 
-              {/* Right Column: Tailored Features & Ideal For Tags */}
+              {/* 2-Column Feature Checklist */}
               <div
+                className="industry-features-grid"
                 style={{
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '12px',
-                  padding: '16px 18px',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '8px 16px',
+                  marginBottom: '14px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '7px',
-                      background: 'var(--primary)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    <IconComponent size={14} />
+                {selected.keyFeatures.map((feat, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '7px', fontSize: '12px', color: 'var(--text-primary)' }}>
+                    <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span style={{ fontWeight: 500, lineHeight: 1.35 }}>{feat}</span>
                   </div>
-                  <div>
-                    <h5 style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
-                      Tailored Features Included
-                    </h5>
-                    <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
-                      Bespoke architecture
-                    </span>
-                  </div>
-                </div>
+                ))}
+              </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', marginBottom: '14px' }}>
-                  {selected.keyFeatures.map((feat, idx) => (
-                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '7px', fontSize: '12px', color: 'var(--text-primary)' }}>
-                      <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                      <span style={{ fontWeight: 500, lineHeight: 1.35 }}>{feat}</span>
-                    </div>
+              {/* Ideal For Badges */}
+              <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(232, 225, 213, 0.8)', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '9.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+                  Ideal For:
+                </span>
+                <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+                  {selected.idealFor.map((item, idx) => (
+                    <span
+                      key={idx}
+                      style={{
+                        fontSize: '10.5px',
+                        fontWeight: 600,
+                        color: 'var(--primary)',
+                        background: '#FFFFFF',
+                        border: '1px solid var(--border-subtle)',
+                        padding: '2px 8px',
+                        borderRadius: 'var(--radius-full)',
+                      }}
+                    >
+                      {item}
+                    </span>
                   ))}
                 </div>
-
-                {/* Ideal For Badges */}
-                <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(232, 225, 213, 0.8)' }}>
-                  <span style={{ fontSize: '9.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '5px' }}>
-                    Ideal For:
-                  </span>
-                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                    {selected.idealFor.map((item, idx) => (
-                      <span
-                        key={idx}
-                        style={{
-                          fontSize: '10.5px',
-                          fontWeight: 600,
-                          color: 'var(--primary)',
-                          background: '#FFFFFF',
-                          border: '1px solid var(--border-subtle)',
-                          padding: '2px 7px',
-                          borderRadius: 'var(--radius-full)',
-                        }}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
+            </div>
+
+            {/* Commercial Outcome Strip */}
+            <div
+              style={{
+                padding: '11px 16px',
+                background: 'var(--accent-soft)',
+                border: '1px solid rgba(217, 119, 70, 0.25)',
+                borderRadius: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                flexWrap: 'wrap',
+              }}
+            >
+              <div style={{ fontSize: '10px', fontWeight: 800, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.5px', flexShrink: 0 }}>
+                Outcome:
+              </div>
+              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.4, flex: 1 }}>
+                {selected.businessImpact}
+              </div>
+            </div>
+
+            {/* Action Buttons Row */}
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }} className="industry-cta-row">
+              <a
+                href="#contact"
+                className="btn-glow"
+                style={{ padding: '10px 20px', fontSize: '12.5px' }}
+              >
+                <span>Build For {selected.name}</span>
+                <ArrowRight size={13} />
+              </a>
+
+              <a
+                href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ padding: '10px 16px', fontSize: '12.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+              >
+                <WhatsAppIcon size={15} color="#25D366" />
+                <span>WhatsApp Quick Chat</span>
+              </a>
             </div>
           </div>
         </div>
@@ -580,6 +582,11 @@ export default function IndustriesWeServe() {
             width: 100% !important;
             justify-content: center !important;
             text-align: center !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .industry-features-grid {
+            grid-template-columns: 1fr !important;
           }
         }
         @media (max-width: 600px) {
