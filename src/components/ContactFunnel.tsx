@@ -805,33 +805,6 @@ export default function ContactFunnel() {
                   <ExternalLink size={12} color="var(--text-muted)" />
                 </a>
               </div>
-
-              {/* Service Standards Trust Pill */}
-              <div
-                style={{
-                  marginTop: '18px',
-                  padding: '14px 16px',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '12px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--text-primary)', fontWeight: 600 }}>
-                  <WhatsAppIcon size={14} color="#25D366" />
-                  <span>Direct WhatsApp channel with senior designer</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--text-primary)', fontWeight: 600 }}>
-                  <CheckCircle2 size={14} color="var(--primary)" />
-                  <span>Clear milestone proposal within 24 hours</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: 'var(--text-primary)', fontWeight: 600 }}>
-                  <CheckCircle2 size={14} color="var(--primary)" />
-                  <span>Mutual NDA protection for all project details</span>
-                </div>
-              </div>
             </div>
 
             {/* Turnaround Guarantee */}
