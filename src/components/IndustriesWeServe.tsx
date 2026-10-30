@@ -228,9 +228,9 @@ export default function IndustriesWeServe() {
           })}
         </div>
 
-        {/* Compact Featured Card */}
+        {/* Featured Card with 40/60 Split on Desktop */}
         <div
-          className="glass-card"
+          className="glass-card industry-featured-card"
           style={{
             background: '#FFFFFF',
             border: '1px solid var(--border-subtle)',
@@ -238,15 +238,18 @@ export default function IndustriesWeServe() {
             boxShadow: '0 10px 30px -10px rgba(24, 35, 30, 0.08), 0 1px 3px rgba(0,0,0,0.02)',
             overflow: 'hidden',
             marginBottom: '36px',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 4fr) minmax(0, 6fr)',
+            alignItems: 'stretch',
           }}
         >
-          {/* Compact Top Image Banner */}
+          {/* 40% Left Region: Image & Short Words */}
           <div
             className="industry-banner-box"
             style={{
               position: 'relative',
               width: '100%',
-              height: '170px',
+              minHeight: '100%',
               overflow: 'hidden',
               backgroundColor: '#18231E',
             }}
@@ -257,6 +260,8 @@ export default function IndustriesWeServe() {
               width={900}
               height={340}
               style={{
+                position: 'absolute',
+                inset: 0,
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
@@ -265,53 +270,23 @@ export default function IndustriesWeServe() {
               loading="lazy"
               decoding="async"
             />
-            {/* Cinematic Gradient Overlay */}
+            {/* Cinematic Gradient Overlay with Short Words */}
             <div
               style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(180deg, rgba(24, 35, 30, 0.15) 0%, rgba(24, 35, 30, 0.72) 100%)',
+                position: 'relative',
+                zIndex: 2,
+                width: '100%',
+                height: '100%',
+                minHeight: '260px',
+                background: 'linear-gradient(180deg, rgba(24, 35, 30, 0.25) 0%, rgba(24, 35, 30, 0.82) 100%)',
                 display: 'flex',
-                alignItems: 'flex-end',
-                padding: '16px 24px',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '20px 22px',
               }}
             >
-              <div
-                className="industry-banner-content"
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap', gap: '8px' }}
-              >
-                <div>
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      fontSize: '10.5px',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.6px',
-                      color: '#FFFFFF',
-                      background: 'rgba(0,0,0,0.45)',
-                      padding: '3px 10px',
-                      borderRadius: 'var(--radius-full)',
-                      backdropFilter: 'blur(6px)',
-                      marginBottom: '4px',
-                    }}
-                  >
-                    Industry Focus • {selected.name}
-                  </span>
-                  <h3
-                    className="font-display"
-                    style={{
-                      fontSize: 'clamp(1.2rem, 1.9vw, 1.5rem)',
-                      fontWeight: 800,
-                      color: '#FFFFFF',
-                      margin: 0,
-                      textShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                    }}
-                  >
-                    {selected.subtitle}
-                  </h3>
-                </div>
-
+              {/* Top Tag */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
                 <div
                   style={{
                     display: 'inline-flex',
@@ -330,137 +305,181 @@ export default function IndustriesWeServe() {
                   <span>{selected.tag}</span>
                 </div>
               </div>
+
+              {/* Bottom Short Words: Industry Focus Badge & Subtitle */}
+              <div className="industry-banner-content">
+                <span
+                  style={{
+                    display: 'inline-block',
+                    fontSize: '10.5px',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.6px',
+                    color: '#FFFFFF',
+                    background: 'rgba(0,0,0,0.5)',
+                    padding: '3px 10px',
+                    borderRadius: 'var(--radius-full)',
+                    backdropFilter: 'blur(6px)',
+                    marginBottom: '6px',
+                  }}
+                >
+                  Industry Focus • {selected.name}
+                </span>
+                <h3
+                  className="font-display"
+                  style={{
+                    fontSize: 'clamp(1.2rem, 1.6vw, 1.45rem)',
+                    fontWeight: 800,
+                    color: '#FFFFFF',
+                    margin: 0,
+                    lineHeight: 1.3,
+                    textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+                  }}
+                >
+                  {selected.subtitle}
+                </h3>
+              </div>
             </div>
           </div>
 
-          {/* Compact Two-Column Body */}
+          {/* 60% Right Region: Title, Description, Outcome, Features & Actions */}
           <div
+            className="industry-card-body"
             style={{
-              padding: '24px 28px',
-              display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.25fr) minmax(0, 1fr)',
-              gap: '28px',
-              alignItems: 'start',
+              padding: '26px 28px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              gap: '18px',
             }}
-            className="industry-detail-grid industry-card-body"
           >
-            {/* Left: Summary & Commercial Outcome */}
+            {/* Header: Title & Description */}
             <div>
-              <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', lineHeight: 1.25 }}>
+              <h4 className="font-display" style={{ fontSize: '19px', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '8px', lineHeight: 1.25 }}>
                 Engineered for {selected.name}
               </h4>
-
-              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '16px' }}>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
                 {selected.description}
               </p>
-
-              {/* Commercial Outcome Box */}
-              <div
-                style={{
-                  padding: '12px 16px',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '10px',
-                  marginBottom: '20px',
-                }}
-              >
-                <div style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '3px' }}>
-                  The Commercial Outcome
-                </div>
-                <div style={{ fontSize: '12.5px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.45 }}>
-                  {selected.businessImpact}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }} className="industry-cta-row">
-                <a
-                  href="#contact"
-                  className="btn-glow"
-                  style={{ padding: '11px 22px', fontSize: '13px' }}
-                >
-                  <span>Build For {selected.name}</span>
-                  <ArrowRight size={14} />
-                </a>
-
-                <a
-                  href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{ padding: '11px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-                >
-                  <WhatsAppIcon size={16} color="#25D366" />
-                  <span>WhatsApp Quick Chat</span>
-                </a>
-              </div>
             </div>
 
-            {/* Right: Feature Checklist & Ideal For */}
+            {/* Sub-grid: Commercial Outcome + Buttons & Features + Ideal For */}
             <div
+              className="industry-content-subgrid"
               style={{
-                background: 'var(--bg-secondary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: '12px',
-                padding: '18px 20px',
+                display: 'grid',
+                gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 1fr)',
+                gap: '20px',
+                alignItems: 'start',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+              {/* Left Column: Commercial Outcome & Action Buttons */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div
                   style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    background: 'var(--primary)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#FFFFFF',
+                    padding: '12px 16px',
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '10px',
                   }}
                 >
-                  <IconComponent size={16} />
-                </div>
-                <div>
-                  <h5 style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
-                    Tailored Features Included
-                  </h5>
-                  <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                    Bespoke architecture for {selected.name}
-                  </span>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
-                {selected.keyFeatures.map((feat, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '12.5px', color: 'var(--text-primary)' }}>
-                    <CheckCircle2 size={14} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <span style={{ fontWeight: 500, lineHeight: 1.4 }}>{feat}</span>
+                  <div style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '3px' }}>
+                    The Commercial Outcome
                   </div>
-                ))}
+                  <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.45 }}>
+                    {selected.businessImpact}
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }} className="industry-cta-row">
+                  <a
+                    href="#contact"
+                    className="btn-glow"
+                    style={{ padding: '10px 18px', fontSize: '12.5px' }}
+                  >
+                    <span>Build For {selected.name}</span>
+                    <ArrowRight size={13} />
+                  </a>
+
+                  <a
+                    href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business!"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                    style={{ padding: '10px 14px', fontSize: '12.5px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                  >
+                    <WhatsAppIcon size={15} color="#25D366" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
               </div>
 
-              {/* Ideal For Badges */}
-              <div style={{ paddingTop: '12px', borderTop: '1px solid rgba(232, 225, 213, 0.8)' }}>
-                <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>
-                  Ideal For:
-                </span>
-                <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                  {selected.idealFor.map((item, idx) => (
-                    <span
-                      key={idx}
-                      style={{
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        color: 'var(--primary)',
-                        background: '#FFFFFF',
-                        border: '1px solid var(--border-subtle)',
-                        padding: '2px 8px',
-                        borderRadius: 'var(--radius-full)',
-                      }}
-                    >
-                      {item}
+              {/* Right Column: Tailored Features & Ideal For Tags */}
+              <div
+                style={{
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '12px',
+                  padding: '16px 18px',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                  <div
+                    style={{
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '7px',
+                      background: 'var(--primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#FFFFFF',
+                    }}
+                  >
+                    <IconComponent size={14} />
+                  </div>
+                  <div>
+                    <h5 style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
+                      Tailored Features Included
+                    </h5>
+                    <span style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
+                      Bespoke architecture
                     </span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', marginBottom: '14px' }}>
+                  {selected.keyFeatures.map((feat, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '7px', fontSize: '12px', color: 'var(--text-primary)' }}>
+                      <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ fontWeight: 500, lineHeight: 1.35 }}>{feat}</span>
+                    </div>
                   ))}
+                </div>
+
+                {/* Ideal For Badges */}
+                <div style={{ paddingTop: '10px', borderTop: '1px solid rgba(232, 225, 213, 0.8)' }}>
+                  <span style={{ fontSize: '9.5px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '5px' }}>
+                    Ideal For:
+                  </span>
+                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                    {selected.idealFor.map((item, idx) => (
+                      <span
+                        key={idx}
+                        style={{
+                          fontSize: '10.5px',
+                          fontWeight: 600,
+                          color: 'var(--primary)',
+                          background: '#FFFFFF',
+                          border: '1px solid var(--border-subtle)',
+                          padding: '2px 7px',
+                          borderRadius: 'var(--radius-full)',
+                        }}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -500,9 +519,27 @@ export default function IndustriesWeServe() {
 
       <style jsx>{`
         @media (max-width: 900px) {
-          .industry-detail-grid {
+          .industry-featured-card {
+            display: block !important;
+          }
+          .industry-banner-box {
+            height: auto !important;
+            min-height: 190px !important;
+          }
+          .industry-banner-box img {
+            position: absolute !important;
+          }
+          .industry-banner-content {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+          .industry-content-subgrid {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 18px !important;
+          }
+          .industry-card-body {
+            padding: 20px 16px !important;
           }
         }
         @media (max-width: 768px) {
