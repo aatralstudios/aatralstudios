@@ -8,9 +8,9 @@ interface AatralLogoProps {
 
 export default function AatralLogo({ size = 'md', variant = 'color', className = '' }: AatralLogoProps) {
   const heightMap = {
-    sm: 34,
-    md: 46,
-    lg: 60,
+    sm: 31,
+    md: 44,
+    lg: 56,
   };
 
   const height = heightMap[size] || 46;

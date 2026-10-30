@@ -204,11 +204,11 @@ export default function ScrollDesignCanvas() {
 
       if (!isMobile) {
         if (currentScrollProgress < 0.28) {
-          // Hero section: sits securely on the right side (x = 2.05) so it never overlaps the left text column
+          // Hero section: visually proportioned so full ring fits without clipping viewport edges
           const t = currentScrollProgress / 0.28;
-          targetX = 2.05 - t * 0.45;
-          targetY = 0.05 - t * 0.2;
-          targetScale = 1.15 - t * 0.1;
+          targetX = 1.95 - t * 0.45;
+          targetY = 0.08 - t * 0.2;
+          targetScale = 0.94 - t * 0.08;
         } else if (currentScrollProgress < 0.62) {
           // Industries section: swings across to the left
           const t = (currentScrollProgress - 0.28) / (0.62 - 0.28);

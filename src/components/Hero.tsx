@@ -28,11 +28,11 @@ export default function Hero() {
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '90vh',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: '140px 0 60px 0',
+        padding: 'clamp(92px, 11vh, 110px) 0 35px 0',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -75,21 +75,21 @@ export default function Hero() {
           position: 'relative',
           zIndex: 3,
           width: '100%',
-          paddingLeft: 'clamp(16px, 5.5vw, 90px)',
-          paddingRight: 'clamp(16px, 5.5vw, 90px)',
+          paddingLeft: 'clamp(16px, 5.5vw, 80px)',
+          paddingRight: 'clamp(16px, 5.5vw, 80px)',
         }}
       >
-        <div style={{ maxWidth: '580px', textAlign: 'left' }}>
+        <div style={{ maxWidth: '540px', textAlign: 'left' }}>
           {/* High-Impact Headline */}
           <h1
             className="font-display"
             style={{
-              fontSize: 'clamp(2rem, 6.2vw, 4.1rem)',
+              fontSize: 'clamp(1.75rem, 3.8vw, 2.9rem)',
               fontWeight: 800,
               lineHeight: 1.15,
-              letterSpacing: '-1px',
+              letterSpacing: '-0.8px',
               color: 'var(--text-primary)',
-              marginBottom: '20px',
+              marginBottom: '14px',
               textAlign: 'left',
               wordBreak: 'break-word',
             }}
@@ -106,11 +106,11 @@ export default function Hero() {
           {/* Short, Punchy, Professional Subheading */}
           <p
             style={{
-              fontSize: 'clamp(0.95rem, 2.4vw, 1.2rem)',
+              fontSize: 'clamp(0.88rem, 1.15vw, 1.05rem)',
               color: 'var(--text-secondary)',
-              lineHeight: 1.6,
-              maxWidth: '520px',
-              marginBottom: '28px',
+              lineHeight: 1.55,
+              maxWidth: '480px',
+              marginBottom: '20px',
               fontWeight: 400,
               textAlign: 'left',
             }}
@@ -125,7 +125,7 @@ export default function Hero() {
               alignItems: 'center',
               gap: '12px',
               flexWrap: 'wrap',
-              marginBottom: '32px',
+              marginBottom: '22px',
               justifyContent: 'flex-start',
             }}
             className="hero-cta-group"
@@ -137,10 +137,10 @@ export default function Hero() {
                 handleScrollTo('contact');
               }}
               className="btn-glow"
-              style={{ padding: '14px 28px', fontSize: '14.5px' }}
+              style={{ padding: '11px 22px', fontSize: '13.5px' }}
             >
               <span>Start Your Project</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </a>
 
             <a
@@ -150,7 +150,7 @@ export default function Hero() {
                 handleScrollTo('industries');
               }}
               className="btn-secondary"
-              style={{ padding: '14px 24px', fontSize: '14.5px' }}
+              style={{ padding: '11px 20px', fontSize: '13.5px' }}
             >
               <span>Explore Industries ↓</span>
             </a>
@@ -161,27 +161,27 @@ export default function Hero() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '16px',
+              gap: '14px',
               flexWrap: 'wrap',
-              fontSize: '12.5px',
+              fontSize: '12px',
               color: 'var(--text-secondary)',
               fontWeight: 600,
-              paddingTop: '20px',
+              paddingTop: '16px',
               borderTop: '1px solid var(--border-subtle)',
               justifyContent: 'flex-start',
             }}
             className="hero-principles"
           >
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '7px' }}>
-              <ShieldCheck size={15} color="var(--primary)" />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <ShieldCheck size={14} color="var(--primary)" />
               <span>100% Bespoke Original Design</span>
             </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '7px' }}>
-              <Zap size={15} color="var(--accent)" />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Zap size={14} color="var(--accent)" />
               <span>Mobile &amp; Desktop Optimized</span>
             </span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '7px' }}>
-              <Sparkles size={15} color="var(--primary)" />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Sparkles size={14} color="var(--primary)" />
               <span>Direct Communication &amp; On-Time Delivery</span>
             </span>
           </div>
@@ -193,14 +193,14 @@ export default function Hero() {
         onClick={() => handleScrollTo('industries')}
         style={{
           position: 'absolute',
-          bottom: '16px',
-          left: 'clamp(16px, 5.5vw, 90px)',
+          bottom: '12px',
+          left: 'clamp(16px, 5.5vw, 80px)',
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
           cursor: 'pointer',
           color: 'var(--text-muted)',
-          fontSize: '12px',
+          fontSize: '11.5px',
           fontWeight: 600,
           zIndex: 3,
         }}

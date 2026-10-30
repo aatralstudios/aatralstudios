@@ -49,7 +49,7 @@ export default function Navbar() {
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid rgba(232, 225, 213, 0.5)',
         boxShadow: scrolled ? '0 4px 20px rgba(24, 35, 30, 0.05)' : 'none',
-        padding: scrolled ? '12px 0' : '16px 0',
+        padding: scrolled ? '8px 0' : '11px 0',
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -71,14 +71,14 @@ export default function Navbar() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '32px',
+            gap: '24px',
           }}
           className="desktop-nav"
         >
           <a
             href="#industries"
             onClick={(e) => handleNavJump(e, 'industries')}
-            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '14px', fontWeight: 600, transition: 'color 0.18s' }}
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
@@ -87,7 +87,7 @@ export default function Navbar() {
           <a
             href="#process"
             onClick={(e) => handleNavJump(e, 'process')}
-            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '14px', fontWeight: 600, transition: 'color 0.18s' }}
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
@@ -96,7 +96,7 @@ export default function Navbar() {
         </nav>
 
         {/* Right Conversion Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {/* Direct WhatsApp Pill */}
           <a
             href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20project!"
@@ -106,19 +106,19 @@ export default function Navbar() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '7px',
-              padding: '8px 14px',
+              gap: '6px',
+              padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
               background: 'var(--primary-soft)',
               border: '1px solid rgba(45, 90, 67, 0.2)',
               color: 'var(--primary)',
-              fontSize: '12.5px',
+              fontSize: '12px',
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'all 0.18s ease',
             }}
           >
-            <WhatsAppIcon size={15} color="#25D366" />
+            <WhatsAppIcon size={14} color="#25D366" />
             <span>WhatsApp</span>
           </a>
 
@@ -128,13 +128,13 @@ export default function Navbar() {
             onClick={(e) => handleNavJump(e, 'contact')}
             className="btn-glow nav-cta-btn"
             style={{
-              padding: '9px 20px',
-              fontSize: '13px',
+              padding: '7px 16px',
+              fontSize: '12.5px',
               borderRadius: 'var(--radius-full)',
             }}
           >
             <span>Start a Project</span>
-            <ArrowUpRight size={14} />
+            <ArrowUpRight size={13} />
           </a>
 
           {/* Mobile Hamburger Toggle */}
