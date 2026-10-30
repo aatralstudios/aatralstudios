@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanPhone = body.phone ? body.phone.replace(/[^0-9]/g, '') : '';
-    if (!body.phone || cleanPhone.length < 8) {
+    if (body.phone && body.phone.trim().length > 0 && cleanPhone.length < 8) {
       errors.push('Please provide a valid phone number (at least 8 digits).');
     }
 
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
     const sanitizedData: EnquiryFormData = {
       fullName: body.fullName.trim(),
       email: body.email.trim().toLowerCase(),
-      phone: body.phone.trim(),
+      phone: (body.phone || '').trim(),
       businessName: (body.businessName || '').trim(),
       websiteType: body.websiteType.trim(),
       estimatedBudget: body.estimatedBudget.trim(),
@@ -124,8 +124,9 @@ export async function POST(req: NextRequest) {
       privacyConsent: true,
     };
 
-    // 6. Process and Dispatch via Google Apps Script (Free Gmail Gateway) if configured
-    const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL || process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+    // 6. Process and Dispatch via Google Apps Script (Free Gmail Gateway)
+    const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztYbcnWUVFZnYWjtZt8IRJoOC__XufTxHzClt7LgN6e9ILmsvX5ToXJVO8PtfNcJc/exec';
+    const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL || process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
 
     if (googleScriptUrl && googleScriptUrl.startsWith('https://script.google.com')) {
       try {

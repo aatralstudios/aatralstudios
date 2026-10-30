@@ -81,12 +81,8 @@ export default function ContactFunnel() {
     setLoading(true);
 
     try {
-      const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL?.trim() || '';
-      const isDirectScript = googleScriptUrl.startsWith('https://script.google.com');
-      const endpoint: string = isDirectScript ? googleScriptUrl : '/api/enquiry';
-      const headers: Record<string, string> = isDirectScript
-        ? { 'Content-Type': 'text/plain;charset=utf-8' }
-        : { 'Content-Type': 'application/json' };
+      const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztYbcnWUVFZnYWjtZt8IRJoOC__XufTxHzClt7LgN6e9ILmsvX5ToXJVO8PtfNcJc/exec';
+      const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL?.trim() || DEFAULT_GOOGLE_SCRIPT_URL;
 
       const payload = {
         fullName: formData.name,
@@ -102,13 +98,26 @@ export default function ContactFunnel() {
         _loadedAt: formData._loadedAt,
       };
 
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(payload),
-      });
+      let response: Response;
+      let data: any;
 
-      const data = await response.json();
+      try {
+        // Attempt direct submission to Google Apps Script first
+        response = await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+        data = await response.json();
+      } catch (directErr) {
+        // If direct fetch is blocked by CORS/browser extension, fallback to internal API proxy
+        response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        data = await response.json();
+      }
 
       if (!response.ok || data.success === false) {
         throw new Error(data.message || 'Failed to dispatch project enquiry.');

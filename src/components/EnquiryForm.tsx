@@ -138,15 +138,27 @@ export default function EnquiryForm({ prefill }: EnquiryFormProps) {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztYbcnWUVFZnYWjtZt8IRJoOC__XufTxHzClt7LgN6e9ILmsvX5ToXJVO8PtfNcJc/exec';
+      const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL?.trim() || DEFAULT_GOOGLE_SCRIPT_URL;
 
-      const data: EnquiryResponse = await response.json();
+      let response: Response;
+      let data: any;
+
+      try {
+        response = await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(formData),
+        });
+        data = await response.json();
+      } catch (directErr) {
+        response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+        data = await response.json();
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || 'Failed to submit enquiry. Please try again.');
