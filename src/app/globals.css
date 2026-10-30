@@ -505,3 +505,10 @@ nextjs-portal,
   display: none !important;
 }
 
+/* Hide Floating Lead Dock on mobile devices */
+@media (max-width: 768px) {
+  .floating-lead-dock {
+    display: none !important;
+  }
+}
+

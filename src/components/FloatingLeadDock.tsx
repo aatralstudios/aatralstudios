@@ -123,26 +123,9 @@ export default function FloatingLeadDock() {
       </div>
 
       <style jsx>{`
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .floating-lead-dock {
-            left: 50% !important;
-            right: auto !important;
-            transform: translateX(-50%) !important;
-            width: calc(100% - 24px) !important;
-            max-width: 380px !important;
-            bottom: max(12px, env(safe-area-inset-bottom)) !important;
-            justify-content: space-between !important;
-            padding: 6px 8px 6px 12px !important;
-            gap: 8px !important;
-          }
-          .desktop-nav {
             display: none !important;
-          }
-          .dock-cta {
-            padding: 8px 14px !important;
-            font-size: 11.5px !important;
-            flex: 1 !important;
-            justify-content: center !important;
           }
         }
       `}</style>
