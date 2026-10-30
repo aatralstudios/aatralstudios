@@ -42,7 +42,7 @@ const industries: IndustrySector[] = [
     icon: Building2,
     accentColor: '#2D5A43',
     tag: 'High-Ticket Inquiries',
-    imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/real-estate.webp',
     imageAlt: 'Modern luxury architectural villa with floor-to-ceiling glass and ambient exterior lighting',
     description:
       'We design authoritative, high-prestige real estate websites that showcase architectural developments with stunning visuals and convert property seekers into private site visits.',
@@ -63,7 +63,7 @@ const industries: IndustrySector[] = [
     icon: Stethoscope,
     accentColor: '#2D5A43',
     tag: 'Patient Trust & Appointments',
-    imageUrl: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/healthcare.webp',
     imageAlt: 'Clean, modern medical clinic consultation room with calming warm interior aesthetics',
     description:
       'A welcoming, compassionate digital clinic that puts patients at ease. Clear practitioner credentials, transparent treatments, and effortless appointment booking with zero phone friction.',
@@ -84,7 +84,7 @@ const industries: IndustrySector[] = [
     icon: UtensilsCrossed,
     accentColor: '#D97746',
     tag: 'Table Reservations & Orders',
-    imageUrl: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/hospitality.webp',
     imageAlt: 'Upscale ambient restaurant dining room with warm golden lighting and curated table settings',
     description:
       'Sensory, appetite-inducing websites that highlight culinary craft, showcase interior ambiance, and make booking a table or ordering food seamless on mobile.',
@@ -105,7 +105,7 @@ const industries: IndustrySector[] = [
     icon: Sparkles,
     accentColor: '#D97746',
     tag: 'Mobile E-Commerce Growth',
-    imageUrl: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/fashion.webp',
     imageAlt: 'Luxury boutique fashion fabrics and designer garments displayed in a high-end retail atelier',
     description:
       'Fast, mobile-first digital storefronts engineered for fashion and textiles. High-resolution fabric zoom, rapid filtering, 1-tap checkout, and instant customer service via WhatsApp.',
@@ -126,7 +126,7 @@ const industries: IndustrySector[] = [
     icon: Briefcase,
     accentColor: '#2D5A43',
     tag: 'Executive Authority',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/corporate.webp',
     imageAlt: 'Modern executive corporate boardroom with architectural glass walls and skyline views',
     description:
       'Clean, authoritative websites that communicate corporate prestige and reliability. Designed to win multimillion-dollar contracts and reassure enterprise partners of your competence.',
@@ -147,7 +147,7 @@ const industries: IndustrySector[] = [
     icon: Dumbbell,
     accentColor: '#D97746',
     tag: 'Memberships & Bookings',
-    imageUrl: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1000&q=80',
+    imageUrl: '/images/industries/fitness.webp',
     imageAlt: 'Premium modern wellness studio with ambient cedar finishes, clean equipment, and natural light',
     description:
       'High-energy, welcoming websites that inspire action. Designed to showcase facility ambiance, highlight class schedules, and convert local visitors into active recurring members.',
@@ -254,6 +254,8 @@ export default function IndustriesWeServe() {
             <img
               src={selected.imageUrl}
               alt={selected.imageAlt}
+              width={900}
+              height={340}
               style={{
                 width: '100%',
                 height: '100%',
@@ -261,6 +263,7 @@ export default function IndustriesWeServe() {
                 display: 'block',
               }}
               loading="lazy"
+              decoding="async"
             />
             {/* Cinematic Gradient Overlay */}
             <div

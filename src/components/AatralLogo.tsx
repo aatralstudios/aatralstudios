@@ -14,7 +14,8 @@ export default function AatralLogo({ size = 'md', variant = 'color', className =
   };
 
   const height = heightMap[size] || 46;
-  const logoSrc = variant === 'white' ? '/logo-white.png' : '/logo.png';
+  const logoPng = variant === 'white' ? '/logo-white.png' : '/logo.png';
+  const logoWebp = variant === 'white' ? '/logo-white.webp' : '/logo.webp';
 
   return (
     <div
@@ -25,16 +26,23 @@ export default function AatralLogo({ size = 'md', variant = 'color', className =
         userSelect: 'none',
       }}
     >
-      <img
-        src={logoSrc}
-        alt="Aatral Studios"
-        style={{
-          height: `${height}px`,
-          width: 'auto',
-          objectFit: 'contain',
-          display: 'block',
-        }}
-      />
+      <picture>
+        <source srcSet={logoWebp} type="image/webp" />
+        <img
+          src={logoPng}
+          alt="Aatral Studios"
+          width={795}
+          height={265}
+          style={{
+            height: `${height}px`,
+            width: 'auto',
+            objectFit: 'contain',
+            display: 'block',
+          }}
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
     </div>
   );
 }
