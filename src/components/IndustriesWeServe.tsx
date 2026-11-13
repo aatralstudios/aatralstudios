@@ -259,101 +259,53 @@ export default function IndustriesWeServe() {
           </p>
         </div>
 
-        {/* Carousel Control Bar & 6 Industry Selector Chips */}
-        <div style={{ marginBottom: '26px' }}>
-          {/* Top Status & Arrow Navigation */}
-          <div
+        {/* Navigation Arrows & 6 Business Type Chips */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '12px',
+            marginBottom: '32px',
+            width: '100%',
+          }}
+          className="industry-nav-wrapper"
+        >
+          {/* Previous Business Type Arrow */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous Business Type"
+            className="industry-arrow-btn"
             style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '12px',
-              padding: '0 4px',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--text-primary)',
+              boxShadow: 'var(--shadow-sm)',
+              flexShrink: 0,
+              transition: 'all 0.18s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.color = 'var(--primary)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-subtle)';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'scale(1)';
             }}
           >
-            {/* Slide Index & Pause/Play Status */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  fontFamily: 'monospace',
-                  color: 'var(--text-muted)',
-                  letterSpacing: '0.5px',
-                }}
-              >
-                0{currentIndex + 1} / 0{industries.length}
-              </span>
-              <span style={{ fontSize: '11px', color: 'var(--border-subtle)' }}>•</span>
-              <button
-                onClick={() => setIsPaused(!isPaused)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '2px 6px',
-                  borderRadius: '6px',
-                  color: isPaused ? 'var(--accent)' : 'var(--text-muted)',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  transition: 'color 0.15s ease',
-                }}
-                title={isPaused ? 'Resume auto-cycle' : 'Pause auto-cycle'}
-              >
-                {isPaused ? <Play size={11} fill="currentColor" /> : <Pause size={11} />}
-                <span>{isPaused ? 'Paused' : 'Auto-Rotating (Hover card to pause)'}</span>
-              </button>
-            </div>
+            <ChevronLeft size={18} />
+          </button>
 
-            {/* Previous & Next Control Arrows */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <button
-                onClick={handlePrev}
-                aria-label="Previous Industry"
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '50%',
-                  background: '#FFFFFF',
-                  border: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'var(--text-primary)',
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.04)',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <ChevronLeft size={15} />
-              </button>
-              <button
-                onClick={handleNext}
-                aria-label="Next Industry"
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '50%',
-                  background: '#FFFFFF',
-                  border: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'var(--text-primary)',
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.04)',
-                  transition: 'all 0.15s ease',
-                }}
-              >
-                <ChevronRight size={15} />
-              </button>
-            </div>
-          </div>
-
-          {/* 6 Clickable Industry Chips with Progress Bar */}
+          {/* 6 Clickable Business Type Chips */}
           <div
             ref={chipsContainerRef}
             style={{
@@ -411,6 +363,40 @@ export default function IndustriesWeServe() {
               );
             })}
           </div>
+
+          {/* Next Business Type Arrow */}
+          <button
+            onClick={handleNext}
+            aria-label="Next Business Type"
+            className="industry-arrow-btn"
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--text-primary)',
+              boxShadow: 'var(--shadow-sm)',
+              flexShrink: 0,
+              transition: 'all 0.18s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.color = 'var(--primary)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border-subtle)';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <ChevronRight size={18} />
+          </button>
         </div>
 
         {/* Featured Card with Smooth Carousel Transition */}
