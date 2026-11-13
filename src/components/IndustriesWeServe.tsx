@@ -233,7 +233,8 @@ export default function IndustriesWeServe() {
         position: 'relative',
         zIndex: 2,
         background:
-          'linear-gradient(180deg, rgba(243, 236, 228, 0.35) 0%, rgba(243, 236, 228, 0.62) 15%, rgba(243, 236, 228, 0.62) 85%, rgba(243, 236, 228, 0.38) 100%)',
+          'linear-gradient(180deg, rgba(243, 236, 228, 0.75) 0%, rgba(250, 248, 245, 0.95) 100%)',
+        borderTop: '1px solid var(--border-subtle)',
       }}
     >
       {/* Delicate Ambient Depth Accents */}

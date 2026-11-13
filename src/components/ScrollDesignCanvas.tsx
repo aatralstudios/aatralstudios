@@ -265,12 +265,13 @@ export default function ScrollDesignCanvas() {
 
       // Adjust opacity dynamically so text remains 100% accessible at all scroll depths
       if (container) {
-        let targetOpacity = '0.52';
+        let targetOpacity = '0.60';
         if (isMobile) {
           // On mobile, keep opacity delicate so text is never disturbed
-          targetOpacity = currentScrollProgress < 0.20 ? '0.22' : '0.16';
+          targetOpacity = currentScrollProgress < 0.20 ? '0.22' : '0.20';
         } else {
-          targetOpacity = currentScrollProgress > 0.82 ? '0.28' : '0.52';
+          // In hero (transparent bg), keep delicate at 0.35; in sections below hero (frosted bg), boost to 0.60
+          targetOpacity = currentScrollProgress < 0.20 ? '0.35' : '0.60';
         }
         if (container.style.opacity !== targetOpacity) {
           container.style.opacity = targetOpacity;

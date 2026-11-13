@@ -94,7 +94,8 @@ export default function ProcessTimeline() {
         padding: '90px 0',
         position: 'relative',
         zIndex: 2,
-        background: 'transparent',
+        background: 'linear-gradient(180deg, rgba(243, 236, 228, 0.75) 0%, rgba(250, 248, 245, 0.95) 100%)',
+        borderTop: '1px solid var(--border-subtle)',
       }}
     >
       <div className="container" style={{ maxWidth: '1160px' }}>
