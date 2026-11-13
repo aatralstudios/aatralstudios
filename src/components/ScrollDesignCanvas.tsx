@@ -265,12 +265,12 @@ export default function ScrollDesignCanvas() {
 
       // Adjust opacity dynamically so text remains 100% accessible at all scroll depths
       if (container) {
-        let targetOpacity = '0.42';
+        let targetOpacity = '0.52';
         if (isMobile) {
           // On mobile, keep opacity delicate so text is never disturbed
-          targetOpacity = currentScrollProgress < 0.20 ? '0.18' : '0.12';
+          targetOpacity = currentScrollProgress < 0.20 ? '0.22' : '0.16';
         } else {
-          targetOpacity = currentScrollProgress > 0.82 ? '0.24' : '0.42';
+          targetOpacity = currentScrollProgress > 0.82 ? '0.28' : '0.52';
         }
         if (container.style.opacity !== targetOpacity) {
           container.style.opacity = targetOpacity;
@@ -333,7 +333,7 @@ export default function ScrollDesignCanvas() {
         height: '100vh',
         pointerEvents: 'none',
         zIndex: 1,
-        opacity: 0.42,
+        opacity: 0.52,
       }}
     />
   );
