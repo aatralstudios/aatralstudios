@@ -171,7 +171,6 @@ export default function IndustriesWeServe() {
   const [currentIndex, setCurrentIndex] = useState<number>(1); // Default to Clinics (index 1)
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
-  const chipsContainerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
   const selected = industries[currentIndex];
@@ -211,22 +210,6 @@ export default function IndustriesWeServe() {
     return () => clearInterval(interval);
   }, [isPaused, handleNext]);
 
-  // Keep active chip centered on mobile scroll container
-  useEffect(() => {
-    if (!chipsContainerRef.current) return;
-    const container = chipsContainerRef.current;
-    const activeChip = container.children[currentIndex] as HTMLElement;
-    if (activeChip) {
-      const chipLeft = activeChip.offsetLeft;
-      const chipWidth = activeChip.offsetWidth;
-      const containerWidth = container.offsetWidth;
-      container.scrollTo({
-        left: chipLeft - (containerWidth / 2) + (chipWidth / 2),
-        behavior: 'smooth',
-      });
-    }
-  }, [currentIndex]);
-
   // Touch Swipe for Mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -259,13 +242,13 @@ export default function IndustriesWeServe() {
           </p>
         </div>
 
-        {/* Navigation Arrows & 6 Business Type Chips */}
+        {/* Navigation Arrows & Carousel Slide Indicators */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '12px',
+            gap: '16px',
             marginBottom: '32px',
             width: '100%',
           }}
@@ -277,8 +260,8 @@ export default function IndustriesWeServe() {
             aria-label="Previous Business Type"
             className="industry-arrow-btn"
             style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '50%',
               background: '#FFFFFF',
               border: '1px solid var(--border-subtle)',
@@ -294,7 +277,7 @@ export default function IndustriesWeServe() {
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--primary)';
               e.currentTarget.style.color = 'var(--primary)';
-              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.transform = 'scale(1.08)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-subtle)';
@@ -302,64 +285,37 @@ export default function IndustriesWeServe() {
               e.currentTarget.style.transform = 'scale(1)';
             }}
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={19} />
           </button>
 
-          {/* 6 Clickable Business Type Chips */}
+          {/* Carousel Slide Indicators */}
           <div
-            ref={chipsContainerRef}
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
               gap: '8px',
-              flexWrap: 'wrap',
             }}
-            className="industry-chips-container"
+            aria-label="Industry slide navigation"
           >
             {industries.map((ind, idx) => {
               const isSelected = idx === currentIndex;
-              const IndIcon = ind.icon;
               return (
                 <button
                   key={ind.id}
                   onClick={() => handleSelect(idx)}
+                  aria-label={`Go to ${ind.name}`}
                   style={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '7px',
-                    padding: '8px 15px',
-                    borderRadius: 'var(--radius-full)',
-                    border: isSelected ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
-                    background: isSelected ? 'var(--primary)' : '#FFFFFF',
-                    color: isSelected ? '#FFFFFF' : 'var(--text-secondary)',
-                    fontSize: '12px',
-                    fontWeight: 600,
+                    width: isSelected ? '24px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    background: isSelected ? 'var(--primary)' : 'rgba(24, 35, 30, 0.2)',
+                    border: 'none',
+                    padding: 0,
                     cursor: 'pointer',
-                    boxShadow: isSelected ? '0 3px 10px rgba(45, 90, 67, 0.2)' : 'var(--shadow-sm)',
-                    transition: 'all 0.18s ease',
+                    transition: 'all 0.25s ease',
                   }}
-                >
-                  <IndIcon size={14} color={isSelected ? '#FFFFFF' : ind.accentColor} />
-                  <span>{ind.name}</span>
-
-                  {/* Autoplay Countdown Progress Indicator */}
-                  {isSelected && !isPaused && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        height: '2.5px',
-                        background: '#FFFFFF',
-                        opacity: 0.85,
-                        animation: 'chipProgress 4.5s linear infinite',
-                      }}
-                    />
-                  )}
-                </button>
+                  title={ind.name}
+                />
               );
             })}
           </div>
@@ -370,8 +326,8 @@ export default function IndustriesWeServe() {
             aria-label="Next Business Type"
             className="industry-arrow-btn"
             style={{
-              width: '36px',
-              height: '36px',
+              width: '38px',
+              height: '38px',
               borderRadius: '50%',
               background: '#FFFFFF',
               border: '1px solid var(--border-subtle)',
@@ -387,7 +343,7 @@ export default function IndustriesWeServe() {
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--primary)';
               e.currentTarget.style.color = 'var(--primary)';
-              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.transform = 'scale(1.08)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = 'var(--border-subtle)';
@@ -395,7 +351,7 @@ export default function IndustriesWeServe() {
               e.currentTarget.style.transform = 'scale(1)';
             }}
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={19} />
           </button>
         </div>
 
@@ -725,14 +681,6 @@ export default function IndustriesWeServe() {
       </div>
 
       <style jsx>{`
-        @keyframes chipProgress {
-          from {
-            width: 0%;
-          }
-          to {
-            width: 100%;
-          }
-        }
         @media (max-width: 900px) {
           .industry-featured-card {
             display: block !important;
@@ -758,22 +706,6 @@ export default function IndustriesWeServe() {
           }
         }
         @media (max-width: 768px) {
-          .industry-chips-container {
-            flex-wrap: nowrap !important;
-            overflow-x: auto !important;
-            justify-content: flex-start !important;
-            padding: 4px 16px 12px 16px !important;
-            margin-left: -16px !important;
-            margin-right: -16px !important;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-          }
-          .industry-chips-container::-webkit-scrollbar {
-            display: none;
-          }
-          .industry-chips-container button {
-            flex-shrink: 0 !important;
-          }
           .industry-banner-box {
             height: auto !important;
             min-height: 190px !important;
