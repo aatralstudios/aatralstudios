@@ -175,80 +175,6 @@ export default function ContactFunnel() {
         borderTop: '1px solid var(--border-subtle)',
       }}
     >
-      {/* Visual Section Divider Strip */}
-      <div
-        aria-hidden="true"
-        className="contact-divider-pill"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '10px',
-          padding: '7px 20px',
-          background: '#FFFFFF',
-          border: '1px solid var(--border-subtle)',
-          borderRadius: 'var(--radius-full)',
-          boxShadow: '0 2px 10px rgba(24, 35, 30, 0.06)',
-          zIndex: 5,
-          whiteSpace: 'nowrap',
-          maxWidth: '92vw',
-        }}
-      >
-        <span
-          style={{
-            width: '5px',
-            height: '5px',
-            borderRadius: '50%',
-            background: 'var(--primary)',
-            display: 'inline-block',
-            flexShrink: 0,
-          }}
-        />
-        <span
-          className="contact-divider-text"
-          style={{
-            fontSize: '11px',
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            color: 'var(--primary)',
-            lineHeight: 1,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            whiteSpace: 'nowrap',
-            flexWrap: 'nowrap',
-          }}
-        >
-          <span style={{ whiteSpace: 'nowrap' }}>Next Step</span>
-          <span
-            style={{
-              width: '4px',
-              height: '4px',
-              borderRadius: '50%',
-              background: 'var(--primary)',
-              opacity: 0.45,
-              display: 'inline-block',
-              flexShrink: 0,
-            }}
-          />
-          <span style={{ whiteSpace: 'nowrap' }}>Project Intake</span>
-        </span>
-        <span
-          style={{
-            width: '5px',
-            height: '5px',
-            borderRadius: '50%',
-            background: 'var(--primary)',
-            display: 'inline-block',
-            flexShrink: 0,
-          }}
-        />
-      </div>
-
       <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header with Elevated Backdrop Highlight for Maximum Readability */}
         <div
@@ -850,17 +776,6 @@ export default function ContactFunnel() {
           }
         }
         @media (max-width: 640px) {
-          .contact-divider-pill {
-            padding: 5px 12px !important;
-            gap: 6px !important;
-            white-space: nowrap !important;
-          }
-          .contact-divider-text {
-            font-size: 9.5px !important;
-            letter-spacing: 0.6px !important;
-            gap: 5px !important;
-            white-space: nowrap !important;
-          }
           .contact-headline {
             font-size: clamp(1rem, 4.5vw, 1.65rem) !important;
             letter-spacing: -0.6px !important;
