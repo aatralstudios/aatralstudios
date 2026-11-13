@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Building2,
   Stethoscope,
@@ -10,6 +10,10 @@ import {
   Dumbbell,
   ArrowRight,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
   PhoneCall,
   Calendar,
   ShoppingBag,
@@ -164,16 +168,85 @@ const industries: IndustrySector[] = [
 ];
 
 export default function IndustriesWeServe() {
-  const [activeTab, setActiveTab] = useState<string>('clinics');
+  const [currentIndex, setCurrentIndex] = useState<number>(1); // Default to Clinics (index 1)
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const chipsContainerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
-  const selected = industries.find((i) => i.id === activeTab) || industries[0];
+  const selected = industries[currentIndex];
   const IconComponent = selected.icon;
+
+  const handleSelect = (idx: number) => {
+    if (idx === currentIndex) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(idx);
+      setIsTransitioning(false);
+    }, 150);
+  };
+
+  const handleNext = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % industries.length);
+      setIsTransitioning(false);
+    }, 150);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + industries.length) % industries.length);
+      setIsTransitioning(false);
+    }, 150);
+  }, []);
+
+  // Automatic Carousel Rotation (4.5 seconds)
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [isPaused, handleNext]);
+
+  // Keep active chip centered on mobile scroll container
+  useEffect(() => {
+    if (!chipsContainerRef.current) return;
+    const container = chipsContainerRef.current;
+    const activeChip = container.children[currentIndex] as HTMLElement;
+    if (activeChip) {
+      const chipLeft = activeChip.offsetLeft;
+      const chipWidth = activeChip.offsetWidth;
+      const containerWidth = container.offsetWidth;
+      container.scrollTo({
+        left: chipLeft - (containerWidth / 2) + (chipWidth / 2),
+        behavior: 'smooth',
+      });
+    }
+  }, [currentIndex]);
+
+  // Touch Swipe for Mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) handleNext();
+      else handlePrev();
+    }
+    touchStartX.current = null;
+  };
 
   return (
     <section id="industries" style={{ padding: '80px 0', position: 'relative', zIndex: 2, background: 'var(--bg-primary)' }}>
       <div className="container" style={{ maxWidth: '1060px' }}>
         {/* Section Header */}
-        <div className="section-header" style={{ maxWidth: '720px', margin: '0 auto 36px auto', textAlign: 'center' }}>
+        <div className="section-header" style={{ maxWidth: '720px', margin: '0 auto 32px auto', textAlign: 'center' }}>
           <div className="section-tag" style={{ justifyContent: 'center' }}>
             <Layers size={13} color="var(--primary)" />
             <span>Tailored Industry Solutions</span>
@@ -186,51 +259,167 @@ export default function IndustriesWeServe() {
           </p>
         </div>
 
-        {/* 6 Industry Selector Chips */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            flexWrap: 'wrap',
-            marginBottom: '30px',
-          }}
-          className="industry-chips-container"
-        >
-          {industries.map((ind) => {
-            const isSelected = ind.id === activeTab;
-            const IndIcon = ind.icon;
-            return (
+        {/* Carousel Control Bar & 6 Industry Selector Chips */}
+        <div style={{ marginBottom: '26px' }}>
+          {/* Top Status & Arrow Navigation */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '12px',
+              padding: '0 4px',
+            }}
+          >
+            {/* Slide Index & Pause/Play Status */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  fontFamily: 'monospace',
+                  color: 'var(--text-muted)',
+                  letterSpacing: '0.5px',
+                }}
+              >
+                0{currentIndex + 1} / 0{industries.length}
+              </span>
+              <span style={{ fontSize: '11px', color: 'var(--border-subtle)' }}>•</span>
               <button
-                key={ind.id}
-                onClick={() => setActiveTab(ind.id)}
+                onClick={() => setIsPaused(!isPaused)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '7px',
-                  padding: '9px 16px',
-                  borderRadius: 'var(--radius-full)',
-                  border: isSelected ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
-                  background: isSelected ? 'var(--primary)' : '#FFFFFF',
-                  color: isSelected ? '#FFFFFF' : 'var(--text-secondary)',
-                  fontSize: '12.5px',
-                  fontWeight: 600,
+                  gap: '4px',
+                  background: 'none',
+                  border: 'none',
                   cursor: 'pointer',
-                  boxShadow: isSelected ? '0 3px 10px rgba(45, 90, 67, 0.2)' : 'var(--shadow-sm)',
-                  transition: 'all 0.18s ease',
+                  padding: '2px 6px',
+                  borderRadius: '6px',
+                  color: isPaused ? 'var(--accent)' : 'var(--text-muted)',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  transition: 'color 0.15s ease',
+                }}
+                title={isPaused ? 'Resume auto-cycle' : 'Pause auto-cycle'}
+              >
+                {isPaused ? <Play size={11} fill="currentColor" /> : <Pause size={11} />}
+                <span>{isPaused ? 'Paused' : 'Auto-Rotating (Hover card to pause)'}</span>
+              </button>
+            </div>
+
+            {/* Previous & Next Control Arrows */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <button
+                onClick={handlePrev}
+                aria-label="Previous Industry"
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  borderRadius: '50%',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'var(--text-primary)',
+                  boxShadow: '0 2px 5px rgba(0,0,0,0.04)',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                <IndIcon size={14} color={isSelected ? '#FFFFFF' : ind.accentColor} />
-                <span>{ind.name}</span>
+                <ChevronLeft size={15} />
               </button>
-            );
-          })}
+              <button
+                onClick={handleNext}
+                aria-label="Next Industry"
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  borderRadius: '50%',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-subtle)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'var(--text-primary)',
+                  boxShadow: '0 2px 5px rgba(0,0,0,0.04)',
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                <ChevronRight size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* 6 Clickable Industry Chips with Progress Bar */}
+          <div
+            ref={chipsContainerRef}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              flexWrap: 'wrap',
+            }}
+            className="industry-chips-container"
+          >
+            {industries.map((ind, idx) => {
+              const isSelected = idx === currentIndex;
+              const IndIcon = ind.icon;
+              return (
+                <button
+                  key={ind.id}
+                  onClick={() => handleSelect(idx)}
+                  style={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '7px',
+                    padding: '8px 15px',
+                    borderRadius: 'var(--radius-full)',
+                    border: isSelected ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
+                    background: isSelected ? 'var(--primary)' : '#FFFFFF',
+                    color: isSelected ? '#FFFFFF' : 'var(--text-secondary)',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    boxShadow: isSelected ? '0 3px 10px rgba(45, 90, 67, 0.2)' : 'var(--shadow-sm)',
+                    transition: 'all 0.18s ease',
+                  }}
+                >
+                  <IndIcon size={14} color={isSelected ? '#FFFFFF' : ind.accentColor} />
+                  <span>{ind.name}</span>
+
+                  {/* Autoplay Countdown Progress Indicator */}
+                  {isSelected && !isPaused && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        height: '2.5px',
+                        background: '#FFFFFF',
+                        opacity: 0.85,
+                        animation: 'chipProgress 4.5s linear infinite',
+                      }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Featured Card with 40/60 Split on Desktop */}
+        {/* Featured Card with Smooth Carousel Transition */}
         <div
           className="glass-card industry-featured-card"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{
             background: '#FFFFFF',
             border: '1px solid var(--border-subtle)',
@@ -241,6 +430,9 @@ export default function IndustriesWeServe() {
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 4fr) minmax(0, 6fr)',
             alignItems: 'stretch',
+            opacity: isTransitioning ? 0.4 : 1,
+            transform: isTransitioning ? 'scale(0.995)' : 'scale(1)',
+            transition: 'opacity 0.2s ease, transform 0.2s ease',
           }}
         >
           {/* 40% Left Region: Image & Short Words */}
@@ -547,6 +739,14 @@ export default function IndustriesWeServe() {
       </div>
 
       <style jsx>{`
+        @keyframes chipProgress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
         @media (max-width: 900px) {
           .industry-featured-card {
             display: block !important;
