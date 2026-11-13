@@ -226,8 +226,47 @@ export default function IndustriesWeServe() {
   };
 
   return (
-    <section id="industries" style={{ padding: '80px 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
-      <div className="container" style={{ maxWidth: '1060px' }}>
+    <section
+      id="industries"
+      style={{
+        padding: '80px 0',
+        position: 'relative',
+        zIndex: 2,
+        background:
+          'linear-gradient(180deg, rgba(243, 236, 228, 0.20) 0%, rgba(243, 236, 228, 0.45) 15%, rgba(243, 236, 228, 0.45) 85%, rgba(243, 236, 228, 0.22) 100%)',
+      }}
+    >
+      {/* Delicate Ambient Depth Accents */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '15%',
+          left: '4%',
+          width: '450px',
+          height: '450px',
+          background: 'radial-gradient(circle, rgba(45, 90, 67, 0.05) 0%, rgba(45, 90, 67, 0) 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '10%',
+          right: '5%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(217, 119, 70, 0.05) 0%, rgba(217, 119, 70, 0) 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+
+      <div className="container" style={{ maxWidth: '1060px', position: 'relative', zIndex: 1 }}>
         {/* Section Header */}
         <div className="section-header" style={{ maxWidth: '720px', margin: '0 auto 32px auto', textAlign: 'center' }}>
           <div className="section-tag" style={{ justifyContent: 'center' }}>
