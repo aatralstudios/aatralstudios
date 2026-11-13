@@ -226,7 +226,7 @@ export default function IndustriesWeServe() {
   };
 
   return (
-    <section id="industries" style={{ padding: '80px 0', position: 'relative', zIndex: 2, background: 'var(--bg-primary)' }}>
+    <section id="industries" style={{ padding: '80px 0', position: 'relative', zIndex: 2, background: 'transparent' }}>
       <div className="container" style={{ maxWidth: '1060px' }}>
         {/* Section Header */}
         <div className="section-header" style={{ maxWidth: '720px', margin: '0 auto 32px auto', textAlign: 'center' }}>
