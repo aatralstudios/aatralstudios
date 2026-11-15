@@ -95,15 +95,6 @@ export default function Navbar() {
           className="desktop-nav"
         >
           <a
-            href="#process"
-            onClick={(e) => handleNavJump(e, 'process')}
-            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-          >
-            How We Work
-          </a>
-          <a
             href="/portfolio"
             style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
@@ -255,14 +246,6 @@ export default function Navbar() {
             overflowY: 'auto',
           }}
         >
-          <a
-            href="#process"
-            onClick={(e) => handleNavJump(e, 'process')}
-            className="mobile-nav-item"
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
-          >
-            How We Work
-          </a>
           <a
             href="/portfolio"
             onClick={() => setMobileMenuOpen(false)}
