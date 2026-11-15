@@ -6,174 +6,106 @@ import {
   Tablet,
   Smartphone,
   ExternalLink,
-  Zap,
-  CheckCircle,
   Shield,
-  Layers,
+  Zap,
+  CheckCircle2,
   ArrowRight,
   Sparkles,
+  MapPin,
+  UtensilsCrossed,
 } from 'lucide-react';
-
-interface Project {
-  id: string;
-  title: string;
-  client: string;
-  category: string;
-  url: string;
-  tags: string[];
-  metrics: string;
-  lighthouse: { perf: number; seo: number; speed: string };
-  description: string;
-  previewGradient: string;
-  previewHeroText: string;
-  previewSubText: string;
-  previewCtas: string[];
-  stats: Array<{ label: string; value: string }>;
-}
-
-const projects: Project[] = [
-  {
-    id: 'veloce',
-    title: 'Veloce Luxury Automotives',
-    client: 'Veloce Motors International',
-    category: 'Brand Experience & Interactive 3D Showroom',
-    url: 'https://veloce.aatralstudios.com',
-    tags: ['Next.js 15', 'Three.js / WebGL', 'Edge CDN', 'Lead Funnel'],
-    metrics: '+210% Inbound Test-Drive Bookings',
-    lighthouse: { perf: 99, seo: 100, speed: '0.4s' },
-    description:
-      'An immersive luxury showroom engineered with real-time 3D vehicle customizers, dynamic audio synthesis, and automated high-ticket quotation intake.',
-    previewGradient: 'linear-gradient(135deg, #090d16 0%, #171d2c 50%, #1e1b4b 100%)',
-    previewHeroText: 'Pure Automotive Sensation.',
-    previewSubText: 'Experience the electric GT-90 with carbon-chassis telemetry and zero emission thrust.',
-    previewCtas: ['Configure Build', 'Book Track Experience'],
-    stats: [
-      { label: 'Booking Conversion', value: '+210%' },
-      { label: 'Asset Load Time', value: '420ms' },
-      { label: 'Lighthouse Score', value: '99/100' },
-    ],
-  },
-  {
-    id: 'kalyan',
-    title: 'Kalyan Silk Emporium',
-    client: 'Kalyan Heritage Textiles',
-    category: 'High-Capacity Headless E-Commerce Store',
-    url: 'https://kalyan.aatralstudios.com',
-    tags: ['Shopify Headless', 'Razorpay & Stripe', 'PWA Offline', 'WhatsApp Order Sync'],
-    metrics: '4.8x Sales Surge in 60 Days',
-    lighthouse: { perf: 98, seo: 100, speed: '0.5s' },
-    description:
-      'Omnichannel apparel marketplace with instant 1-tap checkout, dynamic multi-currency converter, real-time inventory synchronizer, and automated WhatsApp delivery tracking.',
-    previewGradient: 'linear-gradient(135deg, #062820 0%, #064e3b 50%, #022c22 100%)',
-    previewHeroText: 'Handwoven Royal Heritage.',
-    previewSubText: 'Pure Kanchipuram silk sarees woven with certified gold zari and heritage loom craft.',
-    previewCtas: ['Explore Festive Drop', 'View Live Catalog'],
-    stats: [
-      { label: 'Checkout Abandonment', value: '-38%' },
-      { label: 'Mobile Revenue', value: '72%' },
-      { label: 'Orders Processed', value: '45,000+' },
-    ],
-  },
-  {
-    id: 'aura',
-    title: 'Aura Cloud Telemetry SaaS',
-    client: 'Aura Systems Inc.',
-    category: 'Real-Time SaaS Application & Team Console',
-    url: 'https://aura.aatralstudios.com',
-    tags: ['React 19', 'TypeScript', 'Node Microservices', 'Role-Based RBAC'],
-    metrics: '99.99% Uptime with Sub-Second Latency',
-    lighthouse: { perf: 100, seo: 98, speed: '0.3s' },
-    description:
-      'Enterprise telemetry platform analyzing 10M+ daily events. Includes dynamic multi-tenant org management, live webhook debuggers, and Stripe billing meters.',
-    previewGradient: 'linear-gradient(135deg, #082f49 0%, #0369a1 50%, #0f172a 100%)',
-    previewHeroText: 'Zero-Latency Cloud Telemetry.',
-    previewSubText: 'Monitor microservices, detect anomaly spikes, and automate incident dispatch in real time.',
-    previewCtas: ['Open Live Sandbox', 'Read API Docs'],
-    stats: [
-      { label: 'Query Throughput', value: '1.2M req/s' },
-      { label: 'P99 Latency', value: '18ms' },
-      { label: 'Enterprise SLA', value: '99.99%' },
-    ],
-  },
-];
+import { WhatsAppIcon } from '@/components/Icons';
 
 export default function Portfolio() {
-  const [selectedIdx, setSelectedIdx] = useState(0);
   const [deviceMode, setDeviceMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
-  const project = projects[selectedIdx];
 
   // Device width constraints for the interactive simulator
   const deviceWidthMap = {
     desktop: '100%',
     tablet: '768px',
-    mobile: '375px',
+    mobile: '390px',
+  };
+
+  const project = {
+    id: 'rara-cafe',
+    title: 'RaRa Cafe',
+    client: 'RaRa Cafe',
+    location: 'Karappakkam, Rajiv Gandhi Salai (OMR), Chennai',
+    category: 'Artisanal Cafe, Coffee & Quick Bites Experience',
+    url: 'https://aatralstudios.github.io/rara_cafe/',
+    displayUrl: 'aatralstudios.github.io/rara_cafe',
+    tags: ['React 19', 'Tailwind CSS', 'Mobile-First Architecture', 'WhatsApp API', 'Google Maps Routing', 'SEO Schema'],
+    metrics: '0.3s First Paint • 100% Mobile Responsive',
+    lighthouse: { perf: 99, seo: 100, speed: '0.3s' },
+    description:
+      'A sensory, warm web experience designed for an artisanal cafe in Chennai. Engineered with mobile-first menu exploration, 1-tap WhatsApp table inquiries, direct GPS location routing, and vintage-modern typography.',
+    highlights: [
+      'Interactive Mobile Menu with Dietary Categorization',
+      '1-Tap Direct WhatsApp Ordering & Inquiries',
+      'Real-Time Google Maps Navigation & Operating Hours',
+      'Sub-Second Asset Loading & Local SEO Structured Data',
+    ],
   };
 
   return (
-    <section id="portfolio" style={{ padding: '90px 0', position: 'relative' }}>
-      <div className="container">
+    <section
+      id="portfolio"
+      style={{
+        padding: '90px 0 100px 0',
+        position: 'relative',
+        zIndex: 2,
+        background: 'linear-gradient(180deg, rgba(243, 236, 228, 0.75) 0%, rgba(250, 248, 245, 0.95) 100%)',
+        borderTop: '1px solid var(--border-subtle)',
+      }}
+    >
+      <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 50px auto' }}>
-          <div className="badge-pill" style={{ marginBottom: '14px' }}>
-            <Sparkles size={14} color="#4f46e5" />
-            <span>Interactive Engineering Lab</span>
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 42px auto' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '5px 14px',
+              borderRadius: 'var(--radius-full)',
+              background: 'var(--primary-soft)',
+              color: 'var(--primary)',
+              fontSize: '11.5px',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.8px',
+              marginBottom: '12px',
+            }}
+          >
+            <Sparkles size={13} color="var(--primary)" />
+            <span>Featured Client Work</span>
           </div>
+
           <h2
             className="font-display"
-            style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, marginBottom: '16px', color: '#0f172a' }}
+            style={{
+              fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
+              fontWeight: 800,
+              marginBottom: '12px',
+              color: 'var(--text-primary)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.8px',
+            }}
           >
-            Creativity in Motion. <br />
-            <span className="gradient-accent">Capability in Execution.</span>
+            Real Digital Experiences. <br />
+            <span className="gradient-accent">Live and Proven.</span>
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: 1.6 }}>
-            Interact with live simulated previews of our client digital systems. Toggle between desktop, tablet,
-            and mobile viewports to inspect responsive fluid architecture in real time.
-          </p>
-        </div>
 
-        {/* Project Selector Chips */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            flexWrap: 'wrap',
-            marginBottom: '32px',
-          }}
-        >
-          {projects.map((p, idx) => (
-            <button
-              key={p.id}
-              onClick={() => setSelectedIdx(idx)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 20px',
-                borderRadius: 'var(--radius-full)',
-                border: selectedIdx === idx ? '1px solid #4f46e5' : '1px solid #e2e8f0',
-                background: selectedIdx === idx ? '#eef2ff' : '#ffffff',
-                color: selectedIdx === idx ? '#4338ca' : '#475569',
-                fontWeight: selectedIdx === idx ? 700 : 500,
-                fontSize: '13px',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: selectedIdx === idx ? '0 4px 14px rgba(79, 70, 229, 0.15)' : 'none',
-              }}
-            >
-              <span>{p.title}</span>
-              {selectedIdx === idx && (
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#84cc16',
-                  }}
-                />
-              )}
-            </button>
-          ))}
+          <p
+            style={{
+              color: 'var(--text-secondary)',
+              fontSize: '14.5px',
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            Explore live digital products designed and engineered by Aatral Studios. Test the interactive responsive viewport simulator below or launch the live production site directly.
+          </p>
         </div>
 
         {/* Interactive Device Viewport & Browser Shell */}
@@ -182,7 +114,7 @@ export default function Portfolio() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            marginBottom: '40px',
+            marginBottom: '32px',
           }}
         >
           {/* Device Switcher Toolbar */}
@@ -191,12 +123,12 @@ export default function Portfolio() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '6px',
-              background: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: 'var(--radius-md)',
-              marginBottom: '16px',
-              boxShadow: '0 4px 12px rgba(15, 23, 42, 0.04)',
+              padding: '5px',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-full)',
+              marginBottom: '18px',
+              boxShadow: 'var(--shadow-sm)',
             }}
           >
             <button
@@ -206,16 +138,17 @@ export default function Portfolio() {
                 alignItems: 'center',
                 gap: '6px',
                 padding: '6px 14px',
-                borderRadius: '8px',
+                borderRadius: 'var(--radius-full)',
                 border: 'none',
-                background: deviceMode === 'desktop' ? '#f1f5f9' : 'transparent',
-                color: deviceMode === 'desktop' ? '#0f172a' : '#64748b',
+                background: deviceMode === 'desktop' ? 'var(--primary)' : 'transparent',
+                color: deviceMode === 'desktop' ? '#FFFFFF' : 'var(--text-secondary)',
                 fontWeight: deviceMode === 'desktop' ? 700 : 500,
                 fontSize: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.18s ease',
               }}
             >
-              <Monitor size={15} color={deviceMode === 'desktop' ? '#2563EB' : 'currentColor'} />
+              <Monitor size={14} />
               <span>Desktop</span>
             </button>
 
@@ -226,16 +159,17 @@ export default function Portfolio() {
                 alignItems: 'center',
                 gap: '6px',
                 padding: '6px 14px',
-                borderRadius: '8px',
+                borderRadius: 'var(--radius-full)',
                 border: 'none',
-                background: deviceMode === 'tablet' ? '#f1f5f9' : 'transparent',
-                color: deviceMode === 'tablet' ? '#0f172a' : '#64748b',
+                background: deviceMode === 'tablet' ? 'var(--primary)' : 'transparent',
+                color: deviceMode === 'tablet' ? '#FFFFFF' : 'var(--text-secondary)',
                 fontWeight: deviceMode === 'tablet' ? 700 : 500,
                 fontSize: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.18s ease',
               }}
             >
-              <Tablet size={15} color={deviceMode === 'tablet' ? '#2563EB' : 'currentColor'} />
+              <Tablet size={14} />
               <span>Tablet (768px)</span>
             </button>
 
@@ -246,17 +180,18 @@ export default function Portfolio() {
                 alignItems: 'center',
                 gap: '6px',
                 padding: '6px 14px',
-                borderRadius: '8px',
+                borderRadius: 'var(--radius-full)',
                 border: 'none',
-                background: deviceMode === 'mobile' ? '#f1f5f9' : 'transparent',
-                color: deviceMode === 'mobile' ? '#0f172a' : '#64748b',
+                background: deviceMode === 'mobile' ? 'var(--primary)' : 'transparent',
+                color: deviceMode === 'mobile' ? '#FFFFFF' : 'var(--text-secondary)',
                 fontWeight: deviceMode === 'mobile' ? 700 : 500,
                 fontSize: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.18s ease',
               }}
             >
-              <Smartphone size={15} color={deviceMode === 'mobile' ? '#2563EB' : 'currentColor'} />
-              <span>Mobile (375px)</span>
+              <Smartphone size={14} />
+              <span>Mobile (390px)</span>
             </button>
           </div>
 
@@ -266,11 +201,11 @@ export default function Portfolio() {
               width: '100%',
               maxWidth: deviceWidthMap[deviceMode],
               transition: 'max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-              background: '#ffffff',
-              border: '1px solid #cbd5e1',
+              background: '#FFFFFF',
+              border: '1px solid var(--border-subtle)',
               borderRadius: '16px',
               overflow: 'hidden',
-              boxShadow: '0 25px 60px -15px rgba(15, 23, 42, 0.12), 0 0 25px rgba(79, 70, 229, 0.08)',
+              boxShadow: '0 20px 50px -15px rgba(24, 35, 30, 0.12), 0 1px 3px rgba(0, 0, 0, 0.04)',
             }}
           >
             {/* Browser Top Bar */}
@@ -279,38 +214,48 @@ export default function Portfolio() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '12px 18px',
-                background: '#f8fafc',
-                borderBottom: '1px solid #e2e8f0',
+                padding: '10px 16px',
+                background: '#FAF8F5',
+                borderBottom: '1px solid var(--border-subtle)',
+                gap: '12px',
               }}
             >
               {/* Window Controls */}
-              <div style={{ display: 'flex', gap: '6px' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#22c55e' }} />
+              <div style={{ display: 'flex', gap: '6px', flexShrink: 0 }}>
+                <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#E06C75' }} />
+                <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#E5C07B' }} />
+                <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#98C379' }} />
               </div>
 
               {/* URL Pill Bar */}
-              <div
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open live site in new tab"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: '#ffffff',
-                  border: '1px solid #e2e8f0',
+                  background: '#FFFFFF',
+                  border: '1px solid var(--border-subtle)',
                   borderRadius: '20px',
-                  padding: '4px 14px',
+                  padding: '5px 14px',
                   fontSize: '12px',
-                  color: '#475569',
-                  maxWidth: '380px',
+                  color: 'var(--text-secondary)',
+                  maxWidth: '420px',
                   width: '100%',
                   justifyContent: 'center',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.18s ease',
                 }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'var(--primary)')}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border-subtle)')}
               >
-                <Shield size={12} color="#059669" />
-                <span style={{ fontFamily: 'monospace' }}>{project.url}</span>
-              </div>
+                <Shield size={12} color="var(--primary)" />
+                <span style={{ fontFamily: 'monospace', fontWeight: 600 }}>{project.displayUrl}</span>
+                <ExternalLink size={11} color="var(--text-muted)" />
+              </a>
 
               {/* Performance Indicator */}
               <div
@@ -320,121 +265,41 @@ export default function Portfolio() {
                   gap: '4px',
                   fontSize: '11px',
                   fontWeight: 700,
-                  color: '#059669',
-                  background: '#ecfdf5',
-                  padding: '3px 8px',
+                  color: 'var(--primary)',
+                  background: 'var(--primary-soft)',
+                  padding: '3px 9px',
                   borderRadius: '6px',
+                  flexShrink: 0,
                 }}
               >
                 <Zap size={12} />
-                <span>{project.lighthouse.perf}/100</span>
+                <span>{project.lighthouse.perf}/100 Speed</span>
               </div>
             </div>
 
-            {/* Simulated Live Interface Surface */}
+            {/* Live Interactive Iframe / Embedded Preview Surface */}
             <div
               style={{
-                height: '420px',
-                background: project.previewGradient,
-                padding: 'clamp(20px, 4vw, 44px)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
                 position: 'relative',
-                color: '#ffffff',
+                height: deviceMode === 'mobile' ? '580px' : '520px',
+                width: '100%',
+                background: '#FAF8F5',
                 overflow: 'hidden',
               }}
             >
-              {/* Watermark / Category Pill */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    padding: '4px 12px',
-                    background: 'rgba(255, 255, 255, 0.15)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '20px',
-                    color: '#ffffff',
-                  }}
-                >
-                  {project.category}
-                </span>
-
-                <span
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: '#a7f3d0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}
-                >
-                  <CheckCircle size={14} />
-                  <span>{project.metrics}</span>
-                </span>
-              </div>
-
-              {/* Hero Callout inside the preview */}
-              <div style={{ maxWidth: '480px' }}>
-                <h3
-                  className="font-display"
-                  style={{
-                    fontSize: deviceMode === 'mobile' ? '22px' : '32px',
-                    fontWeight: 800,
-                    lineHeight: 1.15,
-                    marginBottom: '12px',
-                    color: '#ffffff',
-                  }}
-                >
-                  {project.previewHeroText}
-                </h3>
-                <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '20px' }}>
-                  {project.previewSubText}
-                </p>
-
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  {project.previewCtas.map((cta, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        padding: '8px 16px',
-                        background: i === 0 ? '#2563EB' : 'rgba(255, 255, 255, 0.15)',
-                        borderRadius: '6px',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        color: '#ffffff',
-                        border: i === 0 ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
-                      }}
-                    >
-                      {cta}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Performance Telemetry Strip */}
-              <div
+              <iframe
+                src={project.url}
+                title="RaRa Cafe Live Client Preview"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 style={{
-                  display: 'flex',
-                  gap: '20px',
-                  paddingTop: '16px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.12)',
-                  flexWrap: 'wrap',
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                  display: 'block',
+                  backgroundColor: '#FFFFFF',
                 }}
-              >
-                {project.stats.map((s, idx) => (
-                  <div key={idx}>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      {s.label}
-                    </div>
-                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff' }}>{s.value}</div>
-                  </div>
-                ))}
-              </div>
+              />
             </div>
           </div>
         </div>
@@ -443,38 +308,94 @@ export default function Portfolio() {
         <div
           className="glass-card portfolio-detail-grid"
           style={{
-            padding: '32px',
-            background: '#ffffff',
+            padding: '28px 32px',
+            background: '#FFFFFF',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: '16px',
             display: 'grid',
             gridTemplateColumns: 'minmax(0, 1.6fr) minmax(0, 1fr)',
             gap: '28px',
             alignItems: 'center',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
           <div>
-            <div style={{ fontSize: '12px', textTransform: 'uppercase', color: '#2563EB', fontWeight: 700, letterSpacing: '0.5px', marginBottom: '6px' }}>
-              Client: {project.client}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '11.5px',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                fontWeight: 700,
+                letterSpacing: '0.6px',
+                marginBottom: '6px',
+              }}
+            >
+              <UtensilsCrossed size={13} />
+              <span>Live Client Deployment</span>
+              <span>•</span>
+              <MapPin size={12} />
+              <span>{project.location}</span>
             </div>
-            <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
-              {project.title}
+
+            <h3
+              className="font-display"
+              style={{
+                fontSize: 'clamp(20px, 2vw, 24px)',
+                fontWeight: 800,
+                color: 'var(--text-primary)',
+                marginBottom: '10px',
+                lineHeight: 1.25,
+              }}
+            >
+              {project.title} — Digital Experience & Location Hub
             </h3>
-            <p style={{ fontSize: '14px', color: '#475569', lineHeight: 1.6, marginBottom: '18px' }}>
+
+            <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '16px' }}>
               {project.description}
             </p>
 
+            {/* Highlights List */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+                gap: '8px 16px',
+                marginBottom: '18px',
+              }}
+            >
+              {project.highlights.map((hl, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '7px',
+                    fontSize: '12px',
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  <CheckCircle2 size={13} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span>{hl}</span>
+                </div>
+              ))}
+            </div>
+
             {/* Tech Stack Pills */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
               {project.tags.map((t, idx) => (
                 <span
                   key={idx}
                   style={{
                     fontSize: '11px',
                     fontWeight: 600,
-                    padding: '4px 10px',
-                    background: '#f1f5f9',
-                    border: '1px solid #e2e8f0',
+                    padding: '4px 9px',
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-subtle)',
                     borderRadius: '6px',
-                    color: '#334155',
+                    color: 'var(--text-secondary)',
                   }}
                 >
                   {t}
@@ -485,10 +406,10 @@ export default function Portfolio() {
 
           <div
             style={{
-              padding: '24px',
-              background: '#f8fafc',
-              border: '1px solid #e2e8f0',
-              borderRadius: '12px',
+              padding: '22px',
+              background: 'var(--bg-primary)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '14px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -496,34 +417,107 @@ export default function Portfolio() {
             }}
           >
             <div>
-              <div style={{ fontSize: '12px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', marginBottom: '8px' }}>
-                Engineering Benchmark
+              <div
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  color: 'var(--text-muted)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.6px',
+                  marginBottom: '10px',
+                }}
+              >
+                Production Verification
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', padding: '6px 0', borderBottom: '1px solid #e2e8f0' }}>
-                <span style={{ color: '#64748b' }}>Google Lighthouse:</span>
-                <strong style={{ color: '#059669' }}>{project.lighthouse.perf}/100 Performance</strong>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: '12.5px',
+                  padding: '7px 0',
+                  borderBottom: '1px solid var(--border-subtle)',
+                }}
+              >
+                <span style={{ color: 'var(--text-secondary)' }}>Google Lighthouse:</span>
+                <strong style={{ color: 'var(--primary)' }}>{project.lighthouse.perf}/100 Performance</strong>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', padding: '6px 0', borderBottom: '1px solid #e2e8f0' }}>
-                <span style={{ color: '#64748b' }}>First Contentful Paint:</span>
-                <strong style={{ color: '#0f172a' }}>{project.lighthouse.speed}</strong>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: '12.5px',
+                  padding: '7px 0',
+                  borderBottom: '1px solid var(--border-subtle)',
+                }}
+              >
+                <span style={{ color: 'var(--text-secondary)' }}>First Contentful Paint:</span>
+                <strong style={{ color: 'var(--text-primary)' }}>{project.lighthouse.speed}</strong>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', padding: '6px 0' }}>
-                <span style={{ color: '#64748b' }}>Technical SEO:</span>
-                <strong style={{ color: '#2563EB' }}>{project.lighthouse.seo}/100</strong>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: '12.5px',
+                  padding: '7px 0',
+                }}
+              >
+                <span style={{ color: 'var(--text-secondary)' }}>Technical SEO:</span>
+                <strong style={{ color: 'var(--accent)' }}>{project.lighthouse.seo}/100</strong>
               </div>
             </div>
 
-            <a
-              href="#enquiry-section"
-              className="btn-glow"
-              style={{ width: '100%', padding: '12px', fontSize: '13px', textAlign: 'center' }}
-            >
-              <span>Request a Similar Build</span>
-              <ArrowRight size={14} />
-            </a>
+            {/* Launch Buttons */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glow"
+                style={{
+                  width: '100%',
+                  padding: '11px',
+                  fontSize: '13px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '7px',
+                  textDecoration: 'none',
+                }}
+              >
+                <span>Visit Live Website</span>
+                <ExternalLink size={14} />
+              </a>
+
+              <a
+                href="#contact"
+                className="btn-secondary"
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  fontSize: '12.5px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  textDecoration: 'none',
+                }}
+              >
+                <span>Request a Similar Build</span>
+                <ArrowRight size={13} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 900px) {
+          .portfolio-detail-grid {
+            grid-template-columns: 1fr !important;
+            padding: 22px 18px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

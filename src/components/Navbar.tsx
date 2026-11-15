@@ -85,6 +85,15 @@ export default function Navbar() {
             How We Work
           </a>
           <a
+            href="#portfolio"
+            onClick={(e) => handleNavJump(e, 'portfolio')}
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Portfolio
+          </a>
+          <a
             href="#industries"
             onClick={(e) => handleNavJump(e, 'industries')}
             style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
@@ -183,6 +192,13 @@ export default function Navbar() {
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             How We Work
+          </a>
+          <a
+            href="#portfolio"
+            onClick={(e) => handleNavJump(e, 'portfolio')}
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+          >
+            Portfolio
           </a>
           <a
             href="#industries"

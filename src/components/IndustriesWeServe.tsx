@@ -20,6 +20,7 @@ import {
   MapPin,
   Clock,
   Layers,
+  ExternalLink,
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 
@@ -36,6 +37,8 @@ interface IndustrySector {
   keyFeatures: string[];
   businessImpact: string;
   idealFor: string[];
+  liveDemoUrl?: string;
+  liveDemoTitle?: string;
 }
 
 const industries: IndustrySector[] = [
@@ -101,6 +104,8 @@ const industries: IndustrySector[] = [
     ],
     businessImpact: 'Drives weeknight table bookings and captures high-margin private party catering requests.',
     idealFor: ['Fine Dining Restaurants', 'Artisanal Cafes & Bakeries', 'Cloud Kitchens', 'Boutique Resorts & Hotels'],
+    liveDemoUrl: 'https://aatralstudios.github.io/rara_cafe/',
+    liveDemoTitle: 'RaRa Cafe',
   },
   {
     id: 'textiles',
@@ -674,6 +679,28 @@ export default function IndustriesWeServe() {
                 <span>Build For {selected.name}</span>
                 <ArrowRight size={14} />
               </a>
+
+              {selected.liveDemoUrl && (
+                <a
+                  href={selected.liveDemoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                  style={{
+                    padding: '11px 18px',
+                    fontSize: '13px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '7px',
+                    borderColor: 'var(--accent)',
+                    color: 'var(--accent)',
+                    fontWeight: 600,
+                  }}
+                >
+                  <ExternalLink size={14} />
+                  <span>View Live Client Demo ({selected.liveDemoTitle})</span>
+                </a>
+              )}
 
               <a
                 href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business!"

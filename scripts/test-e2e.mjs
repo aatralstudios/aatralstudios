@@ -135,11 +135,15 @@ async function run() {
     const hasWhatsApp = html.includes('WhatsApp Quick Chat') || html.includes('wa.me/918220820236');
     recordTest('Industries Section', 'WhatsApp quick chat button present', hasWhatsApp, 'Direct WhatsApp link verified');
 
+    // Verify Portfolio Section & RaRa Cafe
+    const hasPortfolio = html.includes('RaRa Cafe') && html.includes('aatralstudios.github.io/rara_cafe');
+    recordTest('Portfolio Section', 'Featured client portfolio (RaRa Cafe) live and rendered', hasPortfolio, 'RaRa Cafe portfolio integrated');
+
     // Verify Navigation & Anchors
     recordTest(
       'Navigation',
       'Nav links present',
-      html.includes('#industries') && html.includes('#contact'),
+      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio'),
       'Anchor links valid'
     );
     recordTest(
