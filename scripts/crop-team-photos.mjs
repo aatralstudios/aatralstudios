@@ -4,23 +4,9 @@ import fs from 'fs';
 async function generatePortraits() {
   console.log('Generating harmonized team portraits...');
 
-  // 1. SUDHARSHINI
-  const sCrop = { left: 76, top: 5, width: 412, height: 530 };
-  const sInput = 'C:/Users/baska/.gemini/antigravity/brain/9b060202-226d-49c7-8244-b8d0e0fe2ff5/.user_uploaded/media_1794764083697_9f4e6823.jpg';
-
-  const sFinalJpg = await sharp(sInput)
-    .extract(sCrop)
-    .resize(420, 540)
-    .jpeg({ quality: 92, mozjpeg: true })
-    .toBuffer();
-
-  const sFinalWebp = await sharp(sInput)
-    .extract(sCrop)
-    .resize(420, 540)
-    .webp({ quality: 90 })
-    .toBuffer();
-
-  console.log('Processed Sudharshini successfully.');
+  // 1. SUDHARSHINI (Neural DeepLabV3 extraction with matching yellow studio background)
+  const sInput = 'public/images/team/sudharshini.jpg';
+  console.log('Sudharshini portrait already updated with DeepLabV3 neural segmentation and yellow studio background.');
 
   // 2. VASANTHABALAN (New Yellow Studio Background with pocket-level crop)
   const vInput = 'C:/Users/baska/.gemini/antigravity/brain/9b060202-226d-49c7-8244-b8d0e0fe2ff5/.user_uploaded/media_1794767909916_80634cb0.jpg';
@@ -130,8 +116,6 @@ async function generatePortraits() {
     .webp({ quality: 88 })
     .toBuffer();
 
-  fs.writeFileSync('public/images/team/sudharshini.jpg', sFinalJpg);
-  fs.writeFileSync('public/images/team/sudharshini.webp', sFinalWebp);
   fs.writeFileSync('public/images/team/vasanthabalan.jpg', vFinalJpg);
   fs.writeFileSync('public/images/team/vasanthabalan.webp', vFinalWebp);
 
