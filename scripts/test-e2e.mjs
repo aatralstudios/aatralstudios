@@ -162,8 +162,8 @@ async function run() {
     recordTest(
       'Navigation',
       'Nav links present',
-      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us') && html.includes('#about'),
-      'Anchor links valid'
+      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us') && html.includes('#about') && html.includes('/faq'),
+      'Anchor & FAQ links valid'
     );
     recordTest(
       'Contact Funnel',
@@ -177,6 +177,32 @@ async function run() {
       html.includes('aatralstudios@gmail.com') || html.includes('+91 8220820236'),
       'Contact info present'
     );
+
+    // Verify Dedicated FAQ Page
+    console.log(`\n${colors.bold}--- Dedicated FAQ Route (/faq) ---${colors.reset}`);
+    const faqRes = await fetch(`${BASE_URL}/faq`);
+    const faqHtml = await faqRes.text();
+    recordTest('FAQ Route', 'FAQ page returns HTTP 200 OK', faqRes.status === 200, `Status: ${faqRes.status}`);
+
+    const hasAllFaqQuestions =
+      faqHtml.includes('How long does website development take?') &&
+      faqHtml.includes('Do you provide domain and hosting?') &&
+      faqHtml.includes('Can I update website content myself?') &&
+      faqHtml.includes('Will my website work on mobile devices?') &&
+      faqHtml.includes('Do you provide maintenance?') &&
+      faqHtml.includes('Can you redesign my existing website?') &&
+      faqHtml.includes('Do you provide support after deployment?');
+    recordTest('FAQ Questions', 'All 7 suggested client FAQ questions present', hasAllFaqQuestions, '7 questions verified');
+
+    const hasAllFaqAnswers =
+      faqHtml.includes('within 10 days') &&
+      faqHtml.includes('domain setup') &&
+      faqHtml.includes('admin panel') &&
+      faqHtml.includes('100% mobile-responsive') &&
+      faqHtml.includes('charged separately') &&
+      faqHtml.includes('redesign and modernize') &&
+      faqHtml.includes('30 days of complimentary');
+    recordTest('FAQ Answers', 'All 7 client answers verified', hasAllFaqAnswers, '7 answers verified');
 
     // SUITE 2: SEO, Sitemap & Robots
     console.log(`\n${colors.bold}--- Suite 2: SEO, Sitemap & Robots ---${colors.reset}`);
@@ -194,7 +220,7 @@ async function run() {
     recordTest(
       'SEO',
       'sitemap.xml returns 200 OK & valid XML',
-      sitemapRes.status === 200 && sitemapText.includes('<urlset') && sitemapText.includes('aatralstudios'),
+      sitemapRes.status === 200 && sitemapText.includes('<urlset') && sitemapText.includes('aatralstudios') && sitemapText.includes('/faq'),
       `Status: ${sitemapRes.status}`
     );
 

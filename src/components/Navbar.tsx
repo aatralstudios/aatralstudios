@@ -29,6 +29,8 @@ export default function Navbar() {
         top: offsetPosition,
         behavior: 'smooth',
       });
+    } else {
+      window.location.href = id === 'hero' ? '/' : `/#${id}`;
     }
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
@@ -71,7 +73,7 @@ export default function Navbar() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '24px',
+            gap: '20px',
           }}
           className="desktop-nav"
         >
@@ -119,6 +121,32 @@ export default function Navbar() {
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
             About Us
+          </a>
+          <a
+            href="/faq"
+            style={{
+              color: 'var(--text-secondary)',
+              textDecoration: 'none',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              transition: 'all 0.18s ease',
+              padding: '4px 10px',
+              borderRadius: 'var(--radius-full)',
+              border: '1px solid var(--border-subtle)',
+              background: 'rgba(255, 255, 255, 0.6)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--primary)';
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.background = '#FFFFFF';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--text-secondary)';
+              e.currentTarget.style.borderColor = 'var(--border-subtle)';
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.6)';
+            }}
+          >
+            FAQ
           </a>
         </nav>
 
@@ -238,6 +266,13 @@ export default function Navbar() {
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             About Us
+          </a>
+          <a
+            href="/faq"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+          >
+            FAQ
           </a>
           <a
             href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20project!"

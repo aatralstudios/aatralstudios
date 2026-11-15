@@ -130,13 +130,14 @@ export default function Footer() {
               Studio Navigation
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <li><a href="#hero" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Top &amp; Overview</a></li>
-              <li><a href="#process" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>How We Work</a></li>
-              <li><a href="#portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Portfolio (RaRa Cafe)</a></li>
-              <li><a href="#industries" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Industries We Serve</a></li>
-              <li><a href="#why-us" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Why Choose Us</a></li>
-              <li><a href="#about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>About Us (Our Team)</a></li>
-              <li><a href="#contact" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 700 }}>Start a Project &rarr;</a></li>
+              <li><a href="/#hero" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Top &amp; Overview</a></li>
+              <li><a href="/#process" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>How We Work</a></li>
+              <li><a href="/#portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Portfolio (RaRa Cafe)</a></li>
+              <li><a href="/#industries" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Industries We Serve</a></li>
+              <li><a href="/#why-us" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Why Choose Us</a></li>
+              <li><a href="/#about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>About Us (Our Team)</a></li>
+              <li><a href="/faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Frequently Asked Questions (FAQ)</a></li>
+              <li><a href="/#contact" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 700 }}>Start a Project &rarr;</a></li>
             </ul>
           </div>
 
