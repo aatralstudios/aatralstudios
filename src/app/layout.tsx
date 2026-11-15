@@ -2,35 +2,68 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Aatral Studios | We design journeys, not just pages.',
+  metadataBase: new URL('https://aatralstudios.com'),
+  title: {
+    default: 'Aatral Studios | We Build Websites That Help Businesses Grow',
+    template: '%s | Aatral Studios',
+  },
   description:
-    'A design and development studio that combines visual craft with technical execution. Bespoke websites, high-converting landing funnels, and 3D WebGL experiences.',
+    'We design and develop modern, high-performing websites that help businesses establish their digital presence and connect with more customers. Fast 10-day turnaround, accessible pricing, and direct engineer communication.',
   keywords: [
     'Aatral Studios',
-    'Aatral',
     'web design agency',
-    'web development',
-    'Three.js agency',
-    'Next.js 15 agency',
-    'UI/UX design',
+    'web development agency',
+    'custom business websites',
+    'affordable website development',
+    'Next.js 15 web development',
     'high-converting landing pages',
     'Chennai web development',
-    'creative technology studio',
+    'Chengalpattu web design',
+    'mobile responsive websites',
   ],
-  authors: [{ name: 'Aatral Studios', url: 'https://instagram.com/aatralstudios' }],
+  authors: [
+    { name: 'Vasanthabalan B', url: 'https://aatralstudios.com' },
+    { name: 'Sudharshini NS', url: 'https://aatralstudios.com' },
+  ],
   creator: 'Aatral Studios',
+  publisher: 'Aatral Studios',
+  alternates: {
+    canonical: 'https://aatralstudios.com',
+  },
   openGraph: {
-    title: 'Aatral Studios | We design journeys, not just pages.',
+    title: 'Aatral Studios | We Build Websites That Help Businesses Grow',
     description:
-      'A design and development studio combining visual craft with technical execution for ambitious brands.',
+      'We design and develop modern, high-performing websites that help businesses establish their digital presence and connect with more customers. 10-day delivery, direct collaboration.',
     url: 'https://aatralstudios.com',
     siteName: 'Aatral Studios',
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aatral Studios — Websites Built Right',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aatral Studios | We Build Websites That Help Businesses Grow',
+    description:
+      'Modern, high-performing websites that help businesses connect with more customers. Fast 10-day turnaround, accessible pricing, and direct engineer communication.',
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: '/favicon.png',
@@ -47,7 +80,8 @@ const jsonLd = {
   url: 'https://aatralstudios.com',
   logo: 'https://aatralstudios.com/logo.png',
   image: 'https://aatralstudios.com/logo.png',
-  description: 'A design and development studio that combines visual craft with technical execution.',
+  description:
+    'A modern web design and engineering studio combining visual craft with high-performing code to help businesses establish their digital presence and connect with customers.',
   email: 'aatralstudios@gmail.com',
   telephone: '+918220820236',
   address: {
@@ -56,8 +90,22 @@ const jsonLd = {
     addressRegion: 'Tamil Nadu',
     addressCountry: 'IN',
   },
+  founder: [
+    {
+      '@type': 'Person',
+      name: 'Vasanthabalan B',
+      jobTitle: 'Co-Founder & Lead Full-Stack Engineer',
+      homeLocation: 'Chennai, India',
+    },
+    {
+      '@type': 'Person',
+      name: 'Sudharshini NS',
+      jobTitle: 'Co-Founder & Frontend / UI/UX Developer',
+      homeLocation: 'Chengalpattu, India',
+    },
+  ],
   sameAs: ['https://instagram.com/aatralstudios', 'https://wa.me/918220820236'],
-  priceRange: '₹₹₹',
+  priceRange: '₹₹',
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],

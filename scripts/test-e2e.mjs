@@ -178,11 +178,43 @@ async function run() {
       'Contact info present'
     );
 
+    // Verify SEO Titles, Meta Descriptions & Heading Hierarchy on Homepage
+    console.log(`\n${colors.bold}--- Homepage SEO & Heading Hierarchy ---${colors.reset}`);
+    const homeH1Count = (html.match(/<h1[\s>]/gi) || []).length;
+    recordTest('SEO Headings', 'Exactly one <h1> heading on homepage', homeH1Count === 1, `H1 Count: ${homeH1Count}`);
+
+    const hasHomeTitle = html.includes('We Build Websites That Help Businesses Grow');
+    recordTest('SEO Title', 'Homepage has unique, keyword-rich title', hasHomeTitle, 'Title verified');
+
+    const hasHomeDescription = html.includes('name="description"') && html.includes('We design and develop modern, high-performing websites');
+    recordTest('SEO Meta Description', 'Homepage has unique meta description', hasHomeDescription, 'Meta description verified');
+
+    const hasCanonicalHome = html.includes('rel="canonical"') || html.includes('https://aatralstudios.com');
+    recordTest('SEO Canonical', 'Homepage has canonical URL', hasCanonicalHome, 'Canonical verified');
+
+    const hasHomeJsonLd = html.includes('ProfessionalService') && html.includes('Vasanthabalan B') && html.includes('Sudharshini NS');
+    recordTest('SEO Schema.org', 'Homepage has valid Organization/ProfessionalService JSON-LD', hasHomeJsonLd, 'Founders & Studio Schema verified');
+
     // Verify Dedicated FAQ Page
-    console.log(`\n${colors.bold}--- Dedicated FAQ Route (/faq) ---${colors.reset}`);
+    console.log(`\n${colors.bold}--- Dedicated FAQ Route (/faq) SEO & Content ---${colors.reset}`);
     const faqRes = await fetch(`${BASE_URL}/faq`);
     const faqHtml = await faqRes.text();
     recordTest('FAQ Route', 'FAQ page returns HTTP 200 OK', faqRes.status === 200, `Status: ${faqRes.status}`);
+
+    const faqH1Count = (faqHtml.match(/<h1[\s>]/gi) || []).length;
+    recordTest('FAQ SEO Headings', 'Exactly one <h1> heading on FAQ page', faqH1Count === 1, `H1 Count: ${faqH1Count}`);
+
+    const hasFaqH2 = faqHtml.includes('<h2') && faqHtml.includes('Frequently Asked Questions');
+    recordTest('FAQ SEO Headings', 'FAQ page has proper <h2> and <h3> hierarchy', hasFaqH2, 'H2 & H3 hierarchy verified');
+
+    const hasFaqTitle = faqHtml.includes('Frequently Asked Questions (FAQ) | Aatral Studios') || faqHtml.includes('Frequently Asked Questions');
+    recordTest('FAQ SEO Title', 'FAQ page has unique page title', hasFaqTitle, 'FAQ Title verified');
+
+    const hasFaqDescription = faqHtml.includes('name="description"') && (faqHtml.includes('first-time website buyers') || faqHtml.includes('10-day'));
+    recordTest('FAQ SEO Meta Description', 'FAQ page has unique meta description', hasFaqDescription, 'FAQ Meta description verified');
+
+    const hasFaqJsonLd = faqHtml.includes('FAQPage') && faqHtml.includes('How long does website development take?');
+    recordTest('FAQ Schema.org', 'FAQ page has valid FAQPage JSON-LD schema', hasFaqJsonLd, 'FAQPage Rich Snippets schema verified');
 
     const hasAllFaqQuestions =
       faqHtml.includes('How long does website development take?') &&

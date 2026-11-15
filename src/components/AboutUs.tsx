@@ -169,18 +169,19 @@ export default function AboutUs() {
           </div>
 
           <div style={{ flex: 1 }}>
-            <div
+            <h3
               style={{
                 fontSize: '11.5px',
                 fontWeight: 800,
                 color: 'var(--accent)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.8px',
+                margin: 0,
                 marginBottom: '4px',
               }}
             >
               Our Mission
-            </div>
+            </h3>
             <p
               style={{
                 fontSize: '14px',
@@ -326,13 +327,14 @@ export default function AboutUs() {
                 <div style={{ padding: '20px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '18px' }}>
                   {/* Technical Expertise */}
                   <div>
-                    <div
+                    <h4
                       style={{
                         fontSize: '11px',
                         fontWeight: 800,
                         color: 'var(--text-muted)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.6px',
+                        margin: 0,
                         marginBottom: '10px',
                         display: 'flex',
                         alignItems: 'center',
@@ -341,7 +343,7 @@ export default function AboutUs() {
                     >
                       <Zap size={12} color="var(--accent)" />
                       <span>Technical Expertise</span>
-                    </div>
+                    </h4>
 
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {member.expertise.map((skill, sIdx) => (
@@ -365,13 +367,14 @@ export default function AboutUs() {
 
                   {/* Roles & Responsibilities */}
                   <div>
-                    <div
+                    <h4
                       style={{
                         fontSize: '11px',
                         fontWeight: 800,
                         color: 'var(--text-muted)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.6px',
+                        margin: 0,
                         marginBottom: '10px',
                         display: 'flex',
                         alignItems: 'center',
@@ -380,7 +383,7 @@ export default function AboutUs() {
                     >
                       <ShieldCheck size={12} color="var(--primary)" />
                       <span>Roles &amp; Responsibilities</span>
-                    </div>
+                    </h4>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
                       {member.responsibilities.map((resp, rIdx) => (

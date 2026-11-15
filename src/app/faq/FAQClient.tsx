@@ -286,7 +286,25 @@ export default function FAQClient() {
             </div>
           </div>
 
-          {/* FAQ Accordion List */}
+          {/* FAQ Accordion List with Semantic H2 */}
+          <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+            <h2
+              className="font-display"
+              style={{
+                fontSize: '18px',
+                fontWeight: 800,
+                color: 'var(--text-primary)',
+                margin: 0,
+                letterSpacing: '-0.3px',
+              }}
+            >
+              Frequently Asked Questions &amp; Answers
+            </h2>
+            <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontWeight: 600 }}>
+              Showing {filteredFaqs.length} of {faqList.length} topics
+            </span>
+          </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '48px' }}>
             {filteredFaqs.length === 0 ? (
               <div
