@@ -220,13 +220,13 @@ export default function PricingClient() {
           </div>
         </div>
 
-        {/* 4-Tier Pricing Grid */}
-        <div className="container" style={{ maxWidth: '1180px', marginBottom: '56px' }}>
+        {/* 2-in-a-Row Pricing Grid */}
+        <div className="container" style={{ maxWidth: '1060px', marginBottom: '56px' }}>
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '28px',
               alignItems: 'stretch',
             }}
             className="pricing-cards-grid"
@@ -604,13 +604,15 @@ export default function PricingClient() {
           transform: translateY(-4px);
           box-shadow: 0 16px 36px rgba(45, 90, 67, 0.12) !important;
         }
-        @media (max-width: 768px) {
-          .page-main-container {
-            padding-top: 75px !important;
-          }
+        @media (max-width: 860px) {
           .pricing-cards-grid {
             grid-template-columns: 1fr !important;
             gap: 20px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .page-main-container {
+            padding-top: 75px !important;
           }
           .inclusions-banner {
             padding: 24px 20px !important;
