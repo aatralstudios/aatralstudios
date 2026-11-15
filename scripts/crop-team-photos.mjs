@@ -5,16 +5,6 @@ async function generatePortraits() {
   console.log('Generating harmonized team portraits...');
 
   // 1. SUDHARSHINI
-  // Original is 576 x 1024.
-  // Hair top: y ~ 40, Chin: y ~ 320. Head height = 280px.
-  // We want head height to be 285px in a 540px passport photo (~52.8%).
-  // In original: Head height is 280px.
-  // Scale = 285 / 280 = 1.0178.
-  // Crop height = Math.round(540 / 1.0178) = 530px.
-  // Crop width = Math.round(530 * (3.5 / 4.5)) = 412px.
-  // Center horizontally around x = 282.
-  // left = Math.round(282 - 412 / 2) = 76.
-  // top = 5 (gives 35px headroom for hair).
   const sCrop = { left: 76, top: 5, width: 412, height: 530 };
   const sInput = 'C:/Users/baska/.gemini/antigravity/brain/9b060202-226d-49c7-8244-b8d0e0fe2ff5/.user_uploaded/media_1794764083697_9f4e6823.jpg';
 
@@ -32,104 +22,120 @@ async function generatePortraits() {
 
   console.log('Processed Sudharshini successfully.');
 
-  // 2. VASANTHABALAN
-  // Target head height: 285px (exact match with Sudharshini!).
-  // Original head height = 1480px (from hair y=240 to chin y=1720).
-  // Scale = 285 / 1480 = 0.192567.
-  const targetW = Math.round(1580 * 0.192567); // 304px
-  const targetH = Math.round(2240 * 0.192567); // 431px
-  const leftPos = Math.round((420 - targetW) / 2); // 58px
-  const topPos = 0; // Hair top will be at 240 * 0.192567 = 46px headroom!
+  // 2. VASANTHABALAN (New Yellow Studio Background with pocket-level crop)
+  const vInput = 'C:/Users/baska/.gemini/antigravity/brain/9b060202-226d-49c7-8244-b8d0e0fe2ff5/.user_uploaded/media_1794767909916_80634cb0.jpg';
+  const img = await sharp(vInput).raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = img;
+  const w = info.width, h = info.height;
 
-  const vInput = 'C:/portfolio/public/assets/images/vasanthabalan-portrait-color.jpg';
+  // BFS flood fill for exterior blue studio background
+  const isBg = new Uint8Array(w * h);
+  function isBlue(x, y) {
+    const idx = (y * w + x) * 3;
+    const r = data[idx], g = data[idx + 1], b = data[idx + 2];
+    return b > 140 && (b - r) > 50 && (b - g) > 20;
+  }
 
-  // Resize Vasanth first to 304 x 431
-  const vResizedRaw = await sharp(vInput)
-    .resize(targetW, targetH)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-
-  const { data, info } = vResizedRaw;
-  const w = info.width;
-  const h = info.height;
-
-  // Soft fade left & right edges near shoulders (below chin, y > 300)
+  const queue = [];
+  for (let x = 0; x < w; x++) {
+    if (isBlue(x, 0)) { queue.push(x, 0); isBg[0 * w + x] = 1; }
+    if (isBlue(x, h - 1)) { queue.push(x, h - 1); isBg[(h - 1) * w + x] = 1; }
+  }
   for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const idx = (y * w + x) * 4;
-      // Fade left shoulder
-      if (x < 25 && y > 310) {
-        data[idx + 3] = Math.round(data[idx + 3] * (x / 25));
-      }
-      // Fade right shoulder
-      if (x > w - 25 && y > 310) {
-        data[idx + 3] = Math.round(data[idx + 3] * ((w - 1 - x) / 25));
-      }
-      // Fade bottom edge into studio dark
-      if (y > h - 45) {
-        data[idx + 3] = Math.round(data[idx + 3] * ((h - 1 - y) / 45));
+    if (isBlue(0, y)) { queue.push(0, y); isBg[y * w + 0] = 1; }
+    if (isBlue(w - 1, y)) { queue.push(w - 1, y); isBg[y * w + (w - 1)] = 1; }
+  }
+
+  let head = 0;
+  const dx = [-1, 1, 0, 0, -1, 1, -1, 1];
+  const dy = [0, 0, -1, 1, -1, -1, 1, 1];
+
+  while (head < queue.length) {
+    const x = queue[head++];
+    const y = queue[head++];
+    for (let d = 0; d < 8; d++) {
+      const nx = x + dx[d], ny = y + dy[d];
+      if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+        const nIdx = ny * w + nx;
+        if (!isBg[nIdx] && isBlue(nx, ny)) {
+          isBg[nIdx] = 1;
+          queue.push(nx, ny);
+        }
       }
     }
   }
 
-  const featheredV = await sharp(data, {
-    raw: { width: w, height: h, channels: 4 }
-  }).png().toBuffer();
+  function getYellowBg(x, y) {
+    const dist = Math.hypot((x - w / 2) / (w / 2), (y - 350) / (h / 2));
+    const factor = Math.min(1, Math.max(0, dist));
+    const yr = Math.round(248 * (1 - factor * 0.1) + 228 * (factor * 0.1));
+    const yg = Math.round(192 * (1 - factor * 0.18) + 160 * (factor * 0.18));
+    const yb = Math.round(35 * (1 - factor * 0.6) + 12 * (factor * 0.6));
+    return [yr, yg, yb];
+  }
 
-  // Create 420x540 dark studio background matching Vasanth's studio background
-  const bg = await sharp({
-    create: {
-      width: 420,
-      height: 540,
-      channels: 4,
-      background: { r: 6, g: 7, b: 11, alpha: 1 }
+  const outRgba = Buffer.alloc(w * h * 4);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const idx = (y * w + x);
+      const sIdx = idx * 3;
+      const dIdx = idx * 4;
+      const r = data[sIdx], g = data[sIdx + 1], b = data[sIdx + 2];
+      const [yr, yg, yb] = getYellowBg(x, y);
+
+      if (isBg[idx]) {
+        outRgba[dIdx] = yr;
+        outRgba[dIdx + 1] = yg;
+        outRgba[dIdx + 2] = yb;
+        outRgba[dIdx + 3] = 255;
+      } else {
+        let bgNeighbors = 0;
+        for (let d = 0; d < 8; d++) {
+          const nx = x + dx[d], ny = y + dy[d];
+          if (nx >= 0 && nx < w && ny >= 0 && ny < h && isBg[ny * w + nx]) {
+            bgNeighbors++;
+          }
+        }
+
+        if (bgNeighbors > 0) {
+          const blueExcess = Math.max(0, b - Math.max(r, g));
+          const cleanB = Math.max(0, b - blueExcess);
+          const blendFactor = bgNeighbors / 8;
+          outRgba[dIdx] = Math.round(r * (1 - blendFactor * 0.5) + yr * (blendFactor * 0.5));
+          outRgba[dIdx + 1] = Math.round(g * (1 - blendFactor * 0.5) + yg * (blendFactor * 0.5));
+          outRgba[dIdx + 2] = Math.round(cleanB * (1 - blendFactor * 0.5) + yb * (blendFactor * 0.5));
+          outRgba[dIdx + 3] = 255;
+        } else {
+          outRgba[dIdx] = r;
+          outRgba[dIdx + 1] = g;
+          outRgba[dIdx + 2] = b;
+          outRgba[dIdx + 3] = 255;
+        }
+      }
     }
-  }).png().toBuffer();
+  }
 
-  const vFinalJpg = await sharp(bg)
-    .composite([{
-      input: featheredV,
-      left: leftPos,
-      top: topPos
-    }])
-    .jpeg({ quality: 92, mozjpeg: true })
+  const fullYellowBuffer = await sharp(outRgba, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer();
+  const vCrop = { left: 58, top: 50, width: 653, height: 840 };
+
+  const vFinalJpg = await sharp(fullYellowBuffer)
+    .extract(vCrop)
+    .resize(420, 540)
+    .jpeg({ quality: 90, mozjpeg: true })
     .toBuffer();
 
-  const vFinalWebp = await sharp(bg)
-    .composite([{
-      input: featheredV,
-      left: leftPos,
-      top: topPos
-    }])
-    .webp({ quality: 90 })
+  const vFinalWebp = await sharp(fullYellowBuffer)
+    .extract(vCrop)
+    .resize(420, 540)
+    .webp({ quality: 88 })
     .toBuffer();
 
-  console.log('Processed Vasanthabalan successfully.');
+  fs.writeFileSync('public/images/team/sudharshini.jpg', sFinalJpg);
+  fs.writeFileSync('public/images/team/sudharshini.webp', sFinalWebp);
+  fs.writeFileSync('public/images/team/vasanthabalan.jpg', vFinalJpg);
+  fs.writeFileSync('public/images/team/vasanthabalan.webp', vFinalWebp);
 
-  // Save to public/images/team/
-  fs.writeFileSync('c:/aatral studios/public/images/team/sudharshini.jpg', sFinalJpg);
-  fs.writeFileSync('c:/aatral studios/public/images/team/sudharshini.webp', sFinalWebp);
-  fs.writeFileSync('c:/aatral studios/public/images/team/vasanthabalan.jpg', vFinalJpg);
-  fs.writeFileSync('c:/aatral studios/public/images/team/vasanthabalan.webp', vFinalWebp);
-
-  console.log('Saved all 4 images to public/images/team/ successfully!');
-
-  // Create a side-by-side comparison image for verification
-  const comparison = await sharp({
-    create: {
-      width: 880,
-      height: 580,
-      channels: 3,
-      background: { r: 245, g: 245, b: 247 }
-    }
-  }).composite([
-    { input: vFinalJpg, left: 15, top: 20 },
-    { input: sFinalJpg, left: 445, top: 20 }
-  ]).jpeg({ quality: 90 }).toBuffer();
-
-  fs.writeFileSync('C:/Users/baska/.gemini/antigravity/brain/9b060202-226d-49c7-8244-b8d0e0fe2ff5/harmonized-comparison.jpg', comparison);
-  console.log('Saved harmonized-comparison.jpg');
+  console.log('Saved all team images successfully!');
 }
 
 generatePortraits().catch(console.error);
