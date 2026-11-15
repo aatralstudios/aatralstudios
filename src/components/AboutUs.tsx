@@ -38,10 +38,10 @@ const teamMembers: TeamMember[] = [
     photoWebp: '/images/team/vasanthabalan.webp',
     bio: 'Systems engineer focused on high-performance web architecture, sub-second asset delivery, and interactive 3D WebGL experiences.',
     expertise: [
-      'Next.js 15 & React 19 Architecture',
-      'Performance & Google Lighthouse (95+)',
-      'Interactive 3D / WebGL & Motion Design',
-      'API Design, Cloud Deployment & Security',
+      'Next.js 15 & React 19',
+      '95+ Lighthouse Speed',
+      'Interactive 3D & WebGL',
+      'APIs, Cloud & Security',
     ],
     responsibilities: [
       'Architects end-to-end technical systems and data flows',
@@ -60,10 +60,10 @@ const teamMembers: TeamMember[] = [
     photoWebp: '/images/team/sudharshini.webp',
     bio: 'Product developer dedicated to mobile-first interfaces, intuitive user flows, and turning complex business services into clear client experiences.',
     expertise: [
-      'Modern Frontend (React.js & Tailwind CSS)',
-      'Mobile-First Responsive Interface Craft',
-      'User Flow Psychology & Conversion Funnels',
-      'Cross-Device Visual Testing & Accessibility',
+      'React.js & Tailwind CSS',
+      'Mobile-First Responsive UI',
+      'User Flows & Conversion UX',
+      'Accessibility & Visual QA',
     ],
     responsibilities: [
       'Designs conversion-driven desktop and mobile layouts',
@@ -330,6 +330,7 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
                       lineHeight: 1.55,
                       marginTop: '16px',
                       marginBottom: 0,
+                      minHeight: '42px',
                     }}
                   >
                     {member.bio}
@@ -358,22 +359,45 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
                       <span>Technical Expertise</span>
                     </h4>
 
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    <div
+                      className="member-expertise-grid"
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                        gap: '8px',
+                      }}
+                    >
                       {member.expertise.map((skill, sIdx) => (
-                        <span
+                        <div
                           key={sIdx}
                           style={{
                             fontSize: '11.5px',
                             fontWeight: 600,
-                            padding: '4px 10px',
+                            padding: '6px 10px',
                             background: 'var(--bg-secondary)',
                             border: '1px solid var(--border-subtle)',
-                            borderRadius: '6px',
+                            borderRadius: '8px',
                             color: 'var(--text-primary)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            lineHeight: 1.3,
+                            boxShadow: '0 1px 2px rgba(0, 0, 0, 0.02)',
                           }}
                         >
-                          {skill}
-                        </span>
+                          <span
+                            style={{
+                              width: '5px',
+                              height: '5px',
+                              borderRadius: '50%',
+                              backgroundColor: 'var(--accent)',
+                              flexShrink: 0,
+                            }}
+                          />
+                          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {skill}
+                          </span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -510,6 +534,11 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
           .passport-photo-frame {
             width: 86px !important;
             height: 110px !important;
+          }
+        }
+        @media (max-width: 440px) {
+          .member-expertise-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
