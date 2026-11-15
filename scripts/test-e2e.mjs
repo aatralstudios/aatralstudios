@@ -147,11 +147,22 @@ async function run() {
       html.includes('Post-Launch Support');
     recordTest('Why Choose Us Section', 'All 5 grounded reasons rendered', hasWhyUs, 'Why Choose Us verified');
 
+    // Verify About Us Section & Team Profiles
+    const hasAboutUs =
+      html.includes('A Small Team') &&
+      html.includes('Big Digital Ambitions') &&
+      html.includes('Our Mission') &&
+      html.includes('Vasanthabalan B') &&
+      html.includes('Chennai') &&
+      html.includes('Sudharshini NS') &&
+      html.includes('Chengalpattu');
+    recordTest('About Us Section', 'About Us & real team profiles rendered', hasAboutUs, 'Team profiles verified');
+
     // Verify Navigation & Anchors
     recordTest(
       'Navigation',
       'Nav links present',
-      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us'),
+      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us') && html.includes('#about'),
       'Anchor links valid'
     );
     recordTest(
@@ -209,6 +220,8 @@ async function run() {
       { path: '/images/industries/fashion.webp', expectedType: 'image/webp' },
       { path: '/images/industries/corporate.webp', expectedType: 'image/webp' },
       { path: '/images/industries/fitness.webp', expectedType: 'image/webp' },
+      { path: '/images/team/vasanthabalan.jpg', expectedType: 'image/jpeg' },
+      { path: '/images/team/sudharshini.jpg', expectedType: 'image/jpeg' },
     ];
 
     for (const asset of assets) {
