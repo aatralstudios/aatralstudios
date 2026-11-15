@@ -35,12 +35,12 @@ export default function Footer() {
           }}
         >
           {/* Brand Column */}
-          <div>
-            <div style={{ marginBottom: '16px' }}>
+          <div className="footer-brand-col">
+            <div style={{ marginBottom: '14px' }}>
               <AatralLogo size="md" variant="color" />
             </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.6, maxWidth: '320px', marginBottom: '20px' }}>
-              We design journeys, not just pages. A full-service web design and development studio combining visual craft with rock-solid engineering.
+            <p className="footer-tagline" style={{ color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: 1.55, maxWidth: '320px', marginBottom: '16px' }}>
+              We design journeys, not just pages. High-craft, high-performance web engineering for growing businesses.
             </p>
 
             <div style={{ display: 'flex', gap: '8px' }}>
@@ -126,56 +126,60 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
-              Studio Navigation
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <li><a href="/#hero" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Top &amp; Overview</a></li>
-              <li><a href="/#process" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>How We Work</a></li>
-              <li><a href="/portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Portfolio (RaRa Cafe)</a></li>
-              <li><a href="/industries" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Industries We Serve</a></li>
-              <li><a href="/#why-us" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Why Choose Us</a></li>
-              <li><a href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>About Us (Our Team)</a></li>
-              <li><a href="/faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Frequently Asked Questions (FAQ)</a></li>
-              <li><a href="/#contact" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 700 }}>Start a Project &rarr;</a></li>
-            </ul>
-          </div>
+          {/* 2-Column Links Row on Mobile (Studio Navigation & What We Build) */}
+          <div className="footer-links-row">
+            {/* Quick Links */}
+            <div className="footer-nav-col">
+              <h4 className="footer-col-title" style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
+                Studio Navigation
+              </h4>
+              <ul className="footer-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li><a href="/#hero" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Top &amp; Overview</a></li>
+                <li><a href="/#process" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>How We Work</a></li>
+                <li><a href="/portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Portfolio (RaRa Cafe)</a></li>
+                <li><a href="/industries" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Industries We Serve</a></li>
+                <li><a href="/#why-us" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Why Choose Us</a></li>
+                <li><a href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>About Us (Our Team)</a></li>
+                <li><a href="/faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Frequently Asked Questions (FAQ)</a></li>
+                <li><a href="/#contact" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 700 }}>Start a Project &rarr;</a></li>
+              </ul>
+            </div>
 
-          {/* What We Build */}
-          <div>
-            <h4 style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
-              What We Build
-            </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
-              <li>High-Converting Landing Pages</li>
-              <li>Custom Business Websites</li>
-              <li>Online Stores &amp; E-Commerce</li>
-              <li>Interactive 3D Digital Showrooms</li>
-              <li>Brand Identity &amp; UI/UX Systems</li>
-              <li>Speed &amp; Search Engine Optimization</li>
-            </ul>
+            {/* What We Build */}
+            <div className="footer-build-col">
+              <h4 className="footer-col-title" style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
+                What We Build
+              </h4>
+              <ul className="footer-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
+                <li>Landing Pages</li>
+                <li>Business Websites</li>
+                <li>E-Commerce Stores</li>
+                <li>3D Web Experiences</li>
+                <li>UI/UX Design Systems</li>
+                <li>SEO &amp; Performance</li>
+              </ul>
+            </div>
           </div>
 
           {/* Direct Coordinates */}
-          <div>
-            <h4 style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
+          <div className="footer-contact-col">
+            <h4 className="footer-col-title" style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px' }}>
               Direct Coordinates
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
+            <div className="footer-coords-grid" style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
               <div>Email: <a href="mailto:aatralstudios@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}>aatralstudios@gmail.com</a></div>
               <div>Phone / WhatsApp: <a href="https://wa.me/918220820236" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px' }}><WhatsAppIcon size={14} color="#25D366" /> +91 8220820236</a></div>
               <div>Instagram: <a href="https://instagram.com/aatralstudios" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 600 }}>@aatralstudios</a></div>
               <div>Primary Desk: Chennai, Tamil Nadu, India</div>
-              <div>Service Area: Global (Remote-First Engineering)</div>
-              <div>Guaranteed Turnaround: 12–24h SLA</div>
+              <div>Service Area: Global (Remote-First)</div>
+              <div>Turnaround: 12–24h Feasibility SLA</div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div
+          className="footer-bottom-bar"
           style={{
             paddingTop: '24px',
             borderTop: '1px solid var(--border-subtle)',
@@ -223,13 +227,60 @@ export default function Footer() {
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
 
       <style jsx>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 28px !important;
+          }
+        }
+        @media (max-width: 640px) {
           .footer-section {
-            padding: 44px 0 24px 0 !important;
+            padding: 32px 0 20px 0 !important;
           }
           .footer-grid {
-            gap: 24px !important;
-            margin-bottom: 28px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 18px !important;
+            margin-bottom: 20px !important;
+          }
+          .footer-tagline {
+            display: none !important;
+          }
+          .footer-links-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 16px !important;
+            padding: 12px 0 !important;
+            border-top: 1px solid var(--border-subtle) !important;
+            border-bottom: 1px solid var(--border-subtle) !important;
+          }
+          .footer-col-title {
+            margin-bottom: 10px !important;
+            font-size: 11.5px !important;
+          }
+          .footer-list {
+            gap: 5px !important;
+          }
+          .footer-list li a,
+          .footer-list li {
+            font-size: 12px !important;
+            line-height: 1.4 !important;
+          }
+          .footer-contact-col {
+            padding-top: 2px !important;
+          }
+          .footer-coords-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 6px !important;
+            font-size: 12px !important;
+          }
+          .footer-bottom-bar {
+            padding-top: 16px !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 10px !important;
           }
         }
       `}</style>
