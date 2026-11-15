@@ -8,10 +8,8 @@ import {
   Rocket,
   CheckCircle2,
   Clock,
-  ArrowRight,
   Sparkles,
 } from 'lucide-react';
-import { WhatsAppIcon } from '@/components/Icons';
 
 interface ProcessStep {
   step: string;
@@ -152,7 +150,7 @@ export default function ProcessTimeline() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '20px',
-            marginBottom: '40px',
+            marginBottom: 0,
             position: 'relative',
           }}
           className="process-roadmap-grid"
@@ -326,48 +324,6 @@ export default function ProcessTimeline() {
             );
           })}
         </div>
-
-        {/* Bottom Reassurance Banner */}
-        <div
-          className="process-guarantee-banner"
-          style={{
-            padding: '20px 28px',
-            background: '#FFFFFF',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: '14px',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '14px',
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontSize: '14.5px',
-                fontWeight: 800,
-                color: 'var(--text-primary)',
-                marginBottom: '2px',
-              }}
-            >
-              Zero Radio Silence Guarantee
-            </div>
-            <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-              You receive weekly progress video updates, clear Figma milestone links, and dedicated WhatsApp chat <WhatsAppIcon size={14} color="#25D366" style={{ display: 'inline', verticalAlign: '-2px', margin: '0 2px' }} /> directly with your designer.
-            </div>
-          </div>
-
-          <a
-            href="#contact"
-            className="btn-glow"
-            style={{ padding: '11px 22px', fontSize: '13px' }}
-          >
-            <span>Start Your Project With Us</span>
-            <ArrowRight size={14} />
-          </a>
-        </div>
       </div>
 
       <style jsx>{`
@@ -375,19 +331,6 @@ export default function ProcessTimeline() {
           .process-roadmap-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .process-guarantee-banner {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 14px !important;
-            padding: 18px 16px !important;
-          }
-          .process-guarantee-banner a {
-            width: 100% !important;
-            justify-content: center !important;
-            text-align: center !important;
           }
         }
       `}</style>
