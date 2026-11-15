@@ -17,6 +17,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Keyboard navigation: Escape key closes open mobile menu (WCAG 2.1.1)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const handleNavJump = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const elem = document.getElementById(id);
@@ -54,11 +65,17 @@ export default function Navbar() {
         padding: scrolled ? '8px 0' : '11px 0',
       }}
     >
+      {/* Skip to Main Content Link for Keyboard Users (WCAG 2.4.1) */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Brand Logo */}
         <a
           href="#hero"
           onClick={(e) => handleNavJump(e, 'hero')}
+          aria-label="Aatral Studios Homepage"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -209,8 +226,10 @@ export default function Navbar() {
             }}
             className="mobile-hamburger"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -218,6 +237,10 @@ export default function Navbar() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
+          id="mobile-nav-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation Menu"
           style={{
             position: 'absolute',
             top: '100%',

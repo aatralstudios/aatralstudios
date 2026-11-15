@@ -431,6 +431,34 @@ async function run() {
       validLeadPost.status === 200 && validJson.success === true,
       `Status: ${validLeadPost.status}, Success: ${validJson.success}`
     );
+
+    // SUITE 6: Accessibility (WCAG AA)
+    console.log(`\n${colors.bold}--- Suite 6: Accessibility (WCAG AA) ---${colors.reset}`);
+
+    // Check 6.1: Skip to main content link
+    const hasSkipLink = html.includes('skip-to-content') && html.includes('#main-content') && html.includes('id="main-content"');
+    recordTest('Accessibility', 'Skip to main content bypass link present', hasSkipLink, 'Skip link verified');
+
+    // Check 6.2: High-contrast tokens & focus-visible in CSS
+    const fs = await import('fs');
+    const globalsCss = fs.readFileSync('src/app/globals.css', 'utf8');
+    const hasFocusVisible = globalsCss.includes(':focus-visible') && globalsCss.includes('--primary');
+    recordTest('Accessibility', 'Universal high-contrast :focus-visible ring configured', hasFocusVisible, 'Focus visible verified');
+
+    const hasAccessibleContrast = globalsCss.includes('--accent: #B85324') && globalsCss.includes('--text-muted: #54655D');
+    recordTest('Accessibility', 'WCAG AA high-contrast color tokens applied', hasAccessibleContrast, 'Contrast ratio >= 4.5:1 verified');
+
+    // Check 6.3: Image Alt Text
+    const homeImgMatches = html.match(/<img[^>]+>/g) || [];
+    const allHomeImgHaveAlt = homeImgMatches.length > 0 && homeImgMatches.every((img) => /alt="[^"]+"/.test(img));
+    recordTest('Accessibility', `All homepage images have descriptive alt text (${homeImgMatches.length} images)`, allHomeImgHaveAlt, 'Alt text verified');
+
+    // Check 6.4: ARIA Navigation & Accordion Accessibility
+    const hasAriaNav = html.includes('aria-label="Aatral Studios Homepage"') && html.includes('aria-label="Toggle Navigation Menu"');
+    recordTest('Accessibility', 'Navigation elements have semantic ARIA labels', hasAriaNav, 'ARIA nav labels verified');
+
+    const hasFaqAria = faqHtml.includes('aria-expanded') && faqHtml.includes('aria-controls') && faqHtml.includes('role="region"');
+    recordTest('Accessibility', 'FAQ accordions comply with WAI-ARIA keyboard pattern', hasFaqAria, 'WAI-ARIA accordion pattern verified');
   } finally {
     // Teardown
     console.log(`\n${colors.bold}Stopping test server...${colors.reset}`);

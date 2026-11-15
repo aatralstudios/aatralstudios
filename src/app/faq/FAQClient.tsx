@@ -137,6 +137,8 @@ export default function FAQClient() {
       <ScrollDesignCanvas />
 
       <main
+        id="main-content"
+        tabIndex={-1}
         style={{
           position: 'relative',
           zIndex: 2,
@@ -222,9 +224,13 @@ export default function FAQClient() {
                 padding: '4px 12px',
               }}
             >
-              <Search size={16} color="var(--text-muted)" style={{ flexShrink: 0 }} />
+              <Search size={16} color="var(--text-muted)" style={{ flexShrink: 0 }} aria-hidden="true" />
+              <label htmlFor="faq-search-input" className="sr-only">
+                Search frequently asked questions
+              </label>
               <input
-                type="text"
+                id="faq-search-input"
+                type="search"
                 placeholder="Search questions (e.g., domain, 10 days, mobile, CMS)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -353,7 +359,10 @@ export default function FAQClient() {
                     }}
                   >
                     <button
+                      id={`faq-q-${faq.id}`}
                       onClick={() => toggleItem(faq.id)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-a-${faq.id}`}
                       style={{
                         width: '100%',
                         padding: '20px 24px',
@@ -366,7 +375,6 @@ export default function FAQClient() {
                         gap: '16px',
                         textAlign: 'left',
                       }}
-                      aria-expanded={isOpen}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1 }}>
                         <div
@@ -439,6 +447,9 @@ export default function FAQClient() {
                     </button>
 
                     <div
+                      id={`faq-a-${faq.id}`}
+                      role="region"
+                      aria-labelledby={`faq-q-${faq.id}`}
                       style={{
                         display: isOpen ? 'block' : 'none',
                         padding: '0 24px 22px 76px',

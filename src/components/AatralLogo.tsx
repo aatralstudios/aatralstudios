@@ -30,7 +30,7 @@ export default function AatralLogo({ size = 'md', variant = 'color', className =
         <source srcSet={logoWebp} type="image/webp" />
         <img
           src={logoPng}
-          alt="Aatral Studios"
+          alt="Aatral Studios — Web Design & Development Agency"
           width={795}
           height={265}
           style={{

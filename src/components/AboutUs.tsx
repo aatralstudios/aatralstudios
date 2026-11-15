@@ -246,7 +246,7 @@ export default function AboutUs() {
                         <source srcSet={member.photoWebp} type="image/webp" />
                         <img
                           src={member.photo}
-                          alt={`${member.name} - ${member.role}`}
+                          alt={`${member.name} — ${member.role} at Aatral Studios`}
                           width={184}
                           height={184}
                           style={{

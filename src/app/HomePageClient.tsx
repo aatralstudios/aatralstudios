@@ -37,7 +37,7 @@ export default function HomePageClient() {
       {/* Global Scroll-Driven 3D Design Element that travels across all sections */}
       <ScrollDesignCanvas />
 
-      <main style={{ position: 'relative', zIndex: 2 }}>
+      <main id="main-content" tabIndex={-1} style={{ position: 'relative', zIndex: 2 }}>
         {/* 1. Hero: Positioning & Immediate Value */}
         <Hero />
 
