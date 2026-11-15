@@ -220,14 +220,16 @@ export default function PricingClient() {
           </div>
         </div>
 
-        {/* 2-in-a-Row Pricing Grid */}
-        <div className="container" style={{ maxWidth: '1060px', marginBottom: '56px' }}>
+        {/* 2-in-a-Row Pricing Grid (Exactly 2 Cards Per Row) */}
+        <div className="container" style={{ maxWidth: '1020px', marginBottom: '56px' }}>
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '28px',
+              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+              gap: '32px',
               alignItems: 'stretch',
+              maxWidth: '980px',
+              margin: '0 auto',
             }}
             className="pricing-cards-grid"
           >
@@ -600,6 +602,13 @@ export default function PricingClient() {
       <FloatingLeadDock />
 
       <style jsx>{`
+        .pricing-cards-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 32px !important;
+          max-width: 980px !important;
+          margin: 0 auto !important;
+        }
         .pricing-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 16px 36px rgba(45, 90, 67, 0.12) !important;
@@ -607,7 +616,7 @@ export default function PricingClient() {
         @media (max-width: 860px) {
           .pricing-cards-grid {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 24px !important;
           }
         }
         @media (max-width: 768px) {
