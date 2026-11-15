@@ -148,7 +148,7 @@ async function run() {
       (html.includes('/industries') || html.includes('#industries')) &&
         html.includes('#contact') &&
         (html.includes('/portfolio') || html.includes('#portfolio')) &&
-        html.includes('#why-us') &&
+        html.includes('/pricing') &&
         (html.includes('/about') || html.includes('#about')) &&
         html.includes('/faq'),
       'Anchor & Route links valid'
@@ -301,6 +301,35 @@ async function run() {
       portfolioHtml.includes('Karappakkam');
     recordTest('Portfolio Client Project', 'Featured client project (RaRa Cafe) live and interactive', hasPortfolioProject, 'RaRa Cafe details verified');
 
+    // Dedicated Pricing Route (/pricing) SEO & Content
+    console.log(`\n${colors.bold}--- Dedicated Pricing Route (/pricing) SEO & Content ---${colors.reset}`);
+    const pricingRes = await fetch(`${BASE_URL}/pricing`);
+    const pricingHtml = await pricingRes.text();
+    recordTest('Pricing Route', 'Pricing page returns HTTP 200 OK', pricingRes.status === 200, `Status: ${pricingRes.status}`);
+
+    const pricingH1Count = (pricingHtml.match(/<h1[\s>]/gi) || []).length;
+    recordTest('Pricing SEO Headings', 'Exactly one <h1> heading on Pricing page', pricingH1Count === 1, `H1 Count: ${pricingH1Count}`);
+
+    const hasPricingTitle = pricingHtml.includes('Pricing') && pricingHtml.includes('Aatral Studios');
+    recordTest('Pricing SEO Title', 'Pricing page has unique page title', hasPricingTitle, 'Pricing Title verified');
+
+    const hasPricingDescription = pricingHtml.includes('name="description"') && pricingHtml.includes('3,999') && pricingHtml.includes('29,999');
+    recordTest('Pricing SEO Meta Description', 'Pricing page has unique meta description', hasPricingDescription, 'Pricing Meta description verified');
+
+    const hasPricingJsonLd = pricingHtml.includes('OfferCatalog') && pricingHtml.includes('3999') && pricingHtml.includes('29999');
+    recordTest('Pricing Schema.org', 'Pricing page has valid OfferCatalog JSON-LD schema', hasPricingJsonLd, 'OfferCatalog schema verified');
+
+    const hasAll4Packages =
+      pricingHtml.includes('Landing Page Website') &&
+      pricingHtml.includes('3,999') &&
+      pricingHtml.includes('Starter Business Website') &&
+      pricingHtml.includes('7,999') &&
+      pricingHtml.includes('Professional Business Website') &&
+      pricingHtml.includes('12,999') &&
+      pricingHtml.includes('Premium Business Website') &&
+      pricingHtml.includes('19,999');
+    recordTest('Pricing Packages', 'All 4 suggested introductory packages rendered with features', hasAll4Packages, 'All 4 packages verified');
+
     // SUITE 2: SEO, Sitemap & Robots
     console.log(`\n${colors.bold}--- Suite 2: SEO, Sitemap & Robots ---${colors.reset}`);
     const robotsRes = await fetch(`${BASE_URL}/robots.txt`);
@@ -321,6 +350,7 @@ async function run() {
         sitemapText.includes('<urlset') &&
         sitemapText.includes('aatralstudios') &&
         sitemapText.includes('/portfolio') &&
+        sitemapText.includes('/pricing') &&
         sitemapText.includes('/industries') &&
         sitemapText.includes('/about') &&
         sitemapText.includes('/faq'),
