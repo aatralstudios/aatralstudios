@@ -108,14 +108,12 @@ async function run() {
 
     // Verify Hero Slogan and Tagline
     const hasHeroSlogan =
-      html.includes('Where creativity') &&
-      html.includes('meets code') &&
-      html.includes('Where businesses') &&
-      html.includes('possibilities');
+      html.includes('We Build Websites') &&
+      html.includes('Help Businesses Grow');
     recordTest('Hero Section', 'Hero heading slogan present', hasHeroSlogan, 'Text matches latest copy');
 
     const hasTagline =
-      html.includes('hero-tagline') || html.includes('Bespoke web design and development engineered');
+      html.includes('hero-tagline') || html.includes('modern, high-performing websites');
     recordTest('Hero Section', 'Hero tagline present', hasTagline, 'Tagline class & copy present');
 
     const hasCTAs = html.includes('Start Your Project') && html.includes('Explore Industries');

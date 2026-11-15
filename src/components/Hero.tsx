@@ -79,44 +79,41 @@ export default function Hero() {
           paddingRight: 'clamp(16px, 5.5vw, 80px)',
         }}
       >
-        <div style={{ maxWidth: '540px', textAlign: 'left' }}>
-          {/* High-Impact Headline */}
+        <div style={{ maxWidth: '580px', textAlign: 'left' }}>
+          {/* High-Impact Direct Headline */}
           <h1
             className="font-display hero-title"
             style={{
-              fontSize: 'clamp(1.75rem, 3.8vw, 2.9rem)',
+              fontSize: 'clamp(2rem, 4.2vw, 3.25rem)',
               fontWeight: 800,
               lineHeight: 1.15,
               letterSpacing: '-0.8px',
               color: 'var(--text-primary)',
-              marginBottom: '14px',
+              marginBottom: '16px',
               textAlign: 'left',
               wordBreak: 'break-word',
             }}
           >
-            Where creativity <br className="desktop-only" />
+            We Build Websites That{' '}
             <span className="gradient-accent" style={{ display: 'inline-block' }}>
-              meets code.
-            </span>{' '}
-            <br className="desktop-only" />
-            Where businesses <br className="desktop-only" />
-            meet possibilities.
+              Help Businesses Grow.
+            </span>
           </h1>
 
-          {/* Short, Punchy, Professional Subheading / Tagline */}
+          {/* Direct, Value-Focused Subheading */}
           <p
             className="hero-tagline"
             style={{
-              fontSize: 'clamp(0.88rem, 1.15vw, 1.05rem)',
+              fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
               color: 'var(--text-secondary)',
-              lineHeight: 1.55,
-              maxWidth: '480px',
-              marginBottom: '20px',
+              lineHeight: 1.6,
+              maxWidth: '520px',
+              marginBottom: '22px',
               fontWeight: 400,
               textAlign: 'left',
             }}
           >
-            Bespoke web design and development engineered to elevate your brand and turn visitors into clients.
+            We design and develop modern, high-performing websites that help businesses establish their digital presence and connect with more customers.
           </p>
 
           {/* Action Buttons */}
