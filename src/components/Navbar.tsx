@@ -113,13 +113,12 @@ export default function Navbar() {
             Portfolio
           </a>
           <a
-            href="#industries"
-            onClick={(e) => handleNavJump(e, 'industries')}
+            href="/industries"
             style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
-            Industries We Serve
+            Industries
           </a>
           <a
             href="#why-us"
@@ -131,8 +130,7 @@ export default function Navbar() {
             Why Choose Us
           </a>
           <a
-            href="#about"
-            onClick={(e) => handleNavJump(e, 'about')}
+            href="/about"
             style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
             onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
@@ -270,8 +268,8 @@ export default function Navbar() {
             Portfolio
           </a>
           <a
-            href="#industries"
-            onClick={(e) => handleNavJump(e, 'industries')}
+            href="/industries"
+            onClick={() => setMobileMenuOpen(false)}
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             Industries We Serve
@@ -284,8 +282,8 @@ export default function Navbar() {
             Why Choose Us
           </a>
           <a
-            href="#about"
-            onClick={(e) => handleNavJump(e, 'about')}
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             About Us

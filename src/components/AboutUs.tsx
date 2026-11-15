@@ -75,16 +75,18 @@ const teamMembers: TeamMember[] = [
   },
 ];
 
-export default function AboutUs() {
+export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
+  const HeadingTag = isPage ? 'h1' : 'h2';
+
   return (
     <section
       id="about"
       style={{
-        padding: '90px 0 100px 0',
+        padding: isPage ? '40px 0 100px 0' : '90px 0 100px 0',
         position: 'relative',
         zIndex: 2,
         background: 'linear-gradient(180deg, rgba(243, 236, 228, 0.75) 0%, rgba(250, 248, 245, 0.95) 100%)',
-        borderTop: '1px solid var(--border-subtle)',
+        borderTop: isPage ? 'none' : '1px solid var(--border-subtle)',
       }}
     >
       <div className="container" style={{ maxWidth: '1120px' }}>
@@ -110,7 +112,7 @@ export default function AboutUs() {
             <span>Meet The Team Behind Aatral</span>
           </div>
 
-          <h2
+          <HeadingTag
             className="font-display"
             style={{
               fontSize: 'clamp(2rem, 3.4vw, 2.85rem)',
@@ -123,7 +125,7 @@ export default function AboutUs() {
           >
             A Small Team. <br />
             <span className="gradient-accent">Big Digital Ambitions.</span>
-          </h2>
+          </HeadingTag>
 
           <p
             style={{

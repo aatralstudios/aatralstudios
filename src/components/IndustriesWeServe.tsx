@@ -172,7 +172,8 @@ const industries: IndustrySector[] = [
   },
 ];
 
-export default function IndustriesWeServe() {
+export default function IndustriesWeServe({ isPage = false }: { isPage?: boolean } = {}) {
+  const HeadingTag = isPage ? 'h1' : 'h2';
   const [currentIndex, setCurrentIndex] = useState<number>(1); // Default to Clinics (index 1)
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
@@ -279,9 +280,9 @@ export default function IndustriesWeServe() {
             <Layers size={13} color="var(--primary)" />
             <span>Tailored Industry Solutions</span>
           </div>
-          <h2 className="section-title" style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', marginBottom: '10px' }}>
+          <HeadingTag className="section-title" style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.6rem)', marginBottom: '10px' }}>
             Bespoke Websites for Every Business Sector
-          </h2>
+          </HeadingTag>
           <p className="section-subtitle" style={{ fontSize: '14px', lineHeight: 1.55 }}>
             Every industry has unique customer psychology. We design customized digital experiences with the exact features and aesthetics your clients expect.
           </p>

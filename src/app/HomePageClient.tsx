@@ -4,11 +4,11 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import IndustriesWeServe from '@/components/IndustriesWeServe';
+import IndustriesPreview from '@/components/IndustriesPreview';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import Portfolio from '@/components/Portfolio';
 import WhyUs from '@/components/WhyUs';
-import AboutUs from '@/components/AboutUs';
+import AboutPreview from '@/components/AboutPreview';
 import ContactFunnel from '@/components/ContactFunnel';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -47,14 +47,14 @@ export default function HomePageClient() {
         {/* 3. Featured Portfolio Work: Live Client Deployments */}
         <Portfolio />
 
-        {/* 4. Industries We Serve: Tailored Features for Real Estate, Healthcare, Dining, Retail & Corporate */}
-        <IndustriesWeServe />
+        {/* 4. Industries We Serve: Teaser with Link to Full Dedicated Page */}
+        <IndustriesPreview />
 
         {/* 5. Why Choose Aatral Studios: Value & Commitments */}
         <WhyUs />
 
-        {/* 6. About Us: A Small Team. Big Digital Ambitions. */}
-        <AboutUs />
+        {/* 6. About Us: Teaser with Link to Full Dedicated Page */}
+        <AboutPreview />
 
         {/* 7. Contact Funnel: Direct Project Brief Intake */}
         <ContactFunnel />

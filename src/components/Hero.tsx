@@ -142,15 +142,11 @@ export default function Hero() {
             </a>
 
             <a
-              href="#industries"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollTo('industries');
-              }}
+              href="/industries"
               className="btn-secondary"
               style={{ padding: '11px 20px', fontSize: '13.5px' }}
             >
-              <span>Explore Industries ↓</span>
+              <span>Explore Industries &rarr;</span>
             </a>
           </div>
 

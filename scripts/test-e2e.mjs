@@ -162,8 +162,13 @@ async function run() {
     recordTest(
       'Navigation',
       'Nav links present',
-      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us') && html.includes('#about') && html.includes('/faq'),
-      'Anchor & FAQ links valid'
+      (html.includes('/industries') || html.includes('#industries')) &&
+        html.includes('#contact') &&
+        html.includes('#portfolio') &&
+        html.includes('#why-us') &&
+        (html.includes('/about') || html.includes('#about')) &&
+        html.includes('/faq'),
+      'Anchor & Route links valid'
     );
     recordTest(
       'Contact Funnel',
@@ -236,6 +241,59 @@ async function run() {
       faqHtml.includes('30 days of complimentary');
     recordTest('FAQ Answers', 'All 7 client answers verified', hasAllFaqAnswers, '7 answers verified');
 
+    // Dedicated Industries Route (/industries) SEO & Content
+    console.log(`\n${colors.bold}--- Dedicated Industries Route (/industries) SEO & Content ---${colors.reset}`);
+    const indRes = await fetch(`${BASE_URL}/industries`);
+    const indHtml = await indRes.text();
+    recordTest('Industries Route', 'Industries page returns HTTP 200 OK', indRes.status === 200, `Status: ${indRes.status}`);
+
+    const indH1Count = (indHtml.match(/<h1[\s>]/gi) || []).length;
+    recordTest('Industries SEO Headings', 'Exactly one <h1> heading on Industries page', indH1Count === 1, `H1 Count: ${indH1Count}`);
+
+    const hasIndTitle = indHtml.includes('Industries We Serve') && indHtml.includes('Aatral Studios');
+    recordTest('Industries SEO Title', 'Industries page has unique page title', hasIndTitle, 'Industries Title verified');
+
+    const hasIndDescription = indHtml.includes('name="description"') && indHtml.includes('Real Estate, Healthcare Clinics, Restaurants');
+    recordTest('Industries SEO Meta Description', 'Industries page has unique meta description', hasIndDescription, 'Industries Meta description verified');
+
+    const hasIndJsonLd = indHtml.includes('Industry-Specific Web Development Solutions') && indHtml.includes('Real Estate & Property Development Websites');
+    recordTest('Industries Schema.org', 'Industries page has valid Service JSON-LD schema', hasIndJsonLd, 'OfferCatalog schema verified');
+
+    const hasAllIndustries =
+      (indHtml.includes('Real Estate & Property') || indHtml.includes('Real Estate &amp; Property')) &&
+      (indHtml.includes('Clinics & Healthcare') || indHtml.includes('Clinics &amp; Healthcare')) &&
+      (indHtml.includes('Restaurants, Cafes & Hospitality') || indHtml.includes('Restaurants, Cafes &amp; Hospitality')) &&
+      (indHtml.includes('Textiles, Fashion & Jewelry') || indHtml.includes('Textiles, Fashion &amp; Jewelry') || indHtml.includes('Fashion')) &&
+      (indHtml.includes('Corporate, Law & Professional') || indHtml.includes('Corporate, Law &amp; Professional') || indHtml.includes('Corporate')) &&
+      (indHtml.includes('Fitness, Salons & Personal') || indHtml.includes('Fitness, Salons &amp; Personal') || indHtml.includes('Fitness'));
+    recordTest('Industries Sectors', 'All 6 business sectors rendered on /industries', hasAllIndustries, 'All 6 sectors verified');
+
+    // Dedicated About Us Route (/about) SEO & Content
+    console.log(`\n${colors.bold}--- Dedicated About Us Route (/about) SEO & Content ---${colors.reset}`);
+    const aboutRes = await fetch(`${BASE_URL}/about`);
+    const aboutHtml = await aboutRes.text();
+    recordTest('About Route', 'About Us page returns HTTP 200 OK', aboutRes.status === 200, `Status: ${aboutRes.status}`);
+
+    const aboutH1Count = (aboutHtml.match(/<h1[\s>]/gi) || []).length;
+    recordTest('About SEO Headings', 'Exactly one <h1> heading on About page', aboutH1Count === 1, `H1 Count: ${aboutH1Count}`);
+
+    const hasAboutTitle = aboutHtml.includes('About Us') && aboutHtml.includes('Aatral Studios');
+    recordTest('About SEO Title', 'About Us page has unique page title', hasAboutTitle, 'About Title verified');
+
+    const hasAboutDescription = aboutHtml.includes('name="description"') && aboutHtml.includes('Vasanthabalan B') && aboutHtml.includes('Sudharshini NS');
+    recordTest('About SEO Meta Description', 'About Us page has unique meta description', hasAboutDescription, 'About Meta description verified');
+
+    const hasAboutJsonLd = aboutHtml.includes('AboutPage') && aboutHtml.includes('Vasanthabalan B') && aboutHtml.includes('Sudharshini NS');
+    recordTest('About Schema.org', 'About page has valid AboutPage JSON-LD schema', hasAboutJsonLd, 'AboutPage schema verified');
+
+    const hasFoundersDetails =
+      aboutHtml.includes('Vasanthabalan B') &&
+      aboutHtml.includes('Chennai') &&
+      aboutHtml.includes('Sudharshini NS') &&
+      aboutHtml.includes('Chengalpattu') &&
+      aboutHtml.includes('Our Mission');
+    recordTest('About Founders', 'Founders details, degrees, cities & mission rendered', hasFoundersDetails, 'Founders & Mission verified');
+
     // SUITE 2: SEO, Sitemap & Robots
     console.log(`\n${colors.bold}--- Suite 2: SEO, Sitemap & Robots ---${colors.reset}`);
     const robotsRes = await fetch(`${BASE_URL}/robots.txt`);
@@ -252,7 +310,12 @@ async function run() {
     recordTest(
       'SEO',
       'sitemap.xml returns 200 OK & valid XML',
-      sitemapRes.status === 200 && sitemapText.includes('<urlset') && sitemapText.includes('aatralstudios') && sitemapText.includes('/faq'),
+      sitemapRes.status === 200 &&
+        sitemapText.includes('<urlset') &&
+        sitemapText.includes('aatralstudios') &&
+        sitemapText.includes('/industries') &&
+        sitemapText.includes('/about') &&
+        sitemapText.includes('/faq'),
       `Status: ${sitemapRes.status}`
     );
 
