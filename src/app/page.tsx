@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import IndustriesWeServe from '@/components/IndustriesWeServe';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import Portfolio from '@/components/Portfolio';
+import WhyUs from '@/components/WhyUs';
 import ContactFunnel from '@/components/ContactFunnel';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
@@ -35,7 +36,10 @@ export default function HomePage() {
         {/* 4. Industries We Serve: Tailored Features for Real Estate, Healthcare, Dining, Retail & Corporate */}
         <IndustriesWeServe />
 
-        {/* 4. Contact Funnel: Direct Project Brief Intake */}
+        {/* 5. Why Choose Aatral Studios: Value & Commitments */}
+        <WhyUs />
+
+        {/* 6. Contact Funnel: Direct Project Brief Intake */}
         <ContactFunnel />
       </main>
 

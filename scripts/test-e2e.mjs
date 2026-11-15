@@ -137,11 +137,21 @@ async function run() {
     const hasPortfolio = html.includes('RaRa Cafe') && html.includes('aatralstudios.github.io/rara_cafe');
     recordTest('Portfolio Section', 'Featured client portfolio (RaRa Cafe) live and rendered', hasPortfolio, 'RaRa Cafe portfolio integrated');
 
+    // Verify Why Choose Us Section
+    const hasWhyUs =
+      html.includes('Why Choose Aatral Studios') &&
+      html.includes('Affordable Development') &&
+      html.includes('Direct Communication') &&
+      html.includes('Custom Development') &&
+      html.includes('Transparent Process') &&
+      html.includes('Post-Launch Support');
+    recordTest('Why Choose Us Section', 'All 5 grounded reasons rendered', hasWhyUs, 'Why Choose Us verified');
+
     // Verify Navigation & Anchors
     recordTest(
       'Navigation',
       'Nav links present',
-      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio'),
+      html.includes('#industries') && html.includes('#contact') && html.includes('#portfolio') && html.includes('#why-us'),
       'Anchor links valid'
     );
     recordTest(

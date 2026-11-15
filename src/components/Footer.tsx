@@ -134,6 +134,7 @@ export default function Footer() {
               <li><a href="#process" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>How We Work</a></li>
               <li><a href="#portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Portfolio (RaRa Cafe)</a></li>
               <li><a href="#industries" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Industries We Serve</a></li>
+              <li><a href="#why-us" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px' }}>Why Choose Us</a></li>
               <li><a href="#contact" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 700 }}>Start a Project &rarr;</a></li>
             </ul>
           </div>

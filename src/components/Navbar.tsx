@@ -102,6 +102,15 @@ export default function Navbar() {
           >
             Industries We Serve
           </a>
+          <a
+            href="#why-us"
+            onClick={(e) => handleNavJump(e, 'why-us')}
+            style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '13.5px', fontWeight: 600, transition: 'color 0.18s' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Why Choose Us
+          </a>
         </nav>
 
         {/* Right Conversion Actions */}
@@ -206,6 +215,13 @@ export default function Navbar() {
             style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
           >
             Industries We Serve
+          </a>
+          <a
+            href="#why-us"
+            onClick={(e) => handleNavJump(e, 'why-us')}
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+          >
+            Why Choose Us
           </a>
           <a
             href="https://wa.me/918220820236?text=Hi%20Aatral%20Studios,%20I'd%20like%20to%20discuss%20a%20website%20project!"
