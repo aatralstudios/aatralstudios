@@ -10,48 +10,69 @@ import {
   LifeBuoy,
   CheckCircle2,
   ArrowRight,
+  Check,
 } from 'lucide-react';
 
-const reasons = [
+interface WhyUsItem {
+  number: string;
+  icon: React.ElementType;
+  title: string;
+  subtitle: string;
+  description: string;
+  tag: string;
+  highlights: string[];
+}
+
+const reasons: WhyUsItem[] = [
   {
+    number: '01',
     icon: Coins,
     title: 'Affordable Development',
     subtitle: 'Professional websites at accessible prices',
     description:
       'High-standard web engineering and modern visual design priced fairly for growing businesses. You get professional digital craftsmanship without bloated agency overheads.',
     tag: 'Accessible Pricing',
+    highlights: ['Transparent Quotes', 'Zero Agency Markup', 'High ROI Delivery'],
   },
   {
+    number: '02',
     icon: MessagesSquare,
     title: 'Direct Communication',
     subtitle: 'Work directly with the developers',
     description:
       'Collaborate 1-on-1 with the actual engineers and designers crafting your website. No account manager telephone games, no bureaucratic delays—just clear, direct communication.',
     tag: 'Direct 1-on-1 Chat',
+    highlights: ['Direct WhatsApp', 'No Middlemen', 'Fast Turnaround'],
   },
   {
+    number: '03',
     icon: Code2,
     title: 'Custom Development',
     subtitle: 'Solutions tailored to business requirements',
     description:
       'Every layout, interaction, and component is crafted specifically for your business goals and customer psychology. We write clean, modern code tailored to your exact needs.',
     tag: 'Bespoke Architecture',
+    highlights: ['100% Bespoke Code', 'No Generic Themes'],
   },
   {
+    number: '04',
     icon: Milestone,
     title: 'Transparent Process',
     subtitle: 'Clear milestones and project updates',
     description:
       'No guesswork or radio silence. You receive defined phase sign-offs, regular staging previews, and clear schedule updates so you always know when your site goes live.',
     tag: 'Defined Milestones',
+    highlights: ['Milestone Sign-Offs', 'Live Staging Demos'],
   },
   {
+    number: '05',
     icon: LifeBuoy,
     title: 'Post-Launch Support',
     subtitle: 'Assistance after deployment',
     description:
       'We stay by your side after your website is deployed to the live domain. You receive dedicated post-launch support and technical guidance to ensure everything operates smoothly.',
     tag: 'Dedicated Support',
+    highlights: ['30-Day Hypercare', 'Technical Guidance'],
   },
 ];
 
@@ -117,24 +138,18 @@ export default function WhyUs() {
           </p>
         </div>
 
-        {/* 5 Reasons Grid */}
-        <div
-          className="why-us-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '20px',
-            marginBottom: '36px',
-          }}
-        >
+        {/* Balanced Bento Grid: 2 Flagship Cards Top + 3 Pillar Cards Bottom */}
+        <div className="why-us-bento-grid">
           {reasons.map((item, idx) => {
             const Icon = item.icon;
+            const isTopRow = idx < 2;
+
             return (
               <div
                 key={idx}
-                className="glass-card why-us-card"
+                className={`glass-card why-us-card ${isTopRow ? 'why-us-card-top' : 'why-us-card-bottom'}`}
                 style={{
-                  padding: '28px 24px',
+                  padding: isTopRow ? '32px 28px' : '26px 22px',
                   background: '#FFFFFF',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: '16px',
@@ -147,6 +162,7 @@ export default function WhyUs() {
                 }}
               >
                 <div>
+                  {/* Top Bar with Number, Icon and Tag */}
                   <div
                     style={{
                       display: 'flex',
@@ -155,20 +171,34 @@ export default function WhyUs() {
                       marginBottom: '18px',
                     }}
                   >
-                    <div
-                      style={{
-                        width: '42px',
-                        height: '42px',
-                        borderRadius: '10px',
-                        background: 'var(--primary-soft)',
-                        border: '1px solid rgba(45, 90, 67, 0.15)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--primary)',
-                      }}
-                    >
-                      <Icon size={20} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div
+                        style={{
+                          width: isTopRow ? '44px' : '40px',
+                          height: isTopRow ? '44px' : '40px',
+                          borderRadius: '10px',
+                          background: 'var(--primary-soft)',
+                          border: '1px solid rgba(45, 90, 67, 0.15)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'var(--primary)',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Icon size={isTopRow ? 22 : 19} />
+                      </div>
+
+                      <span
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          letterSpacing: '0.8px',
+                          color: 'var(--text-muted)',
+                        }}
+                      >
+                        {item.number}
+                      </span>
                     </div>
 
                     <span
@@ -186,10 +216,11 @@ export default function WhyUs() {
                     </span>
                   </div>
 
+                  {/* Title & Subtitle */}
                   <h3
                     className="font-display"
                     style={{
-                      fontSize: '17px',
+                      fontSize: isTopRow ? '19px' : '16.5px',
                       fontWeight: 800,
                       color: 'var(--text-primary)',
                       marginBottom: '4px',
@@ -204,22 +235,55 @@ export default function WhyUs() {
                       fontSize: '12.5px',
                       fontWeight: 600,
                       color: 'var(--primary)',
-                      marginBottom: '10px',
+                      marginBottom: '12px',
                     }}
                   >
                     {item.subtitle}
                   </div>
 
+                  {/* Description */}
                   <p
                     style={{
                       fontSize: '13px',
                       color: 'var(--text-secondary)',
                       lineHeight: 1.6,
                       margin: 0,
+                      marginBottom: '16px',
                     }}
                   >
                     {item.description}
                   </p>
+                </div>
+
+                {/* Sub-Feature Highlights Pills */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '6px',
+                    paddingTop: '12px',
+                    borderTop: '1px solid rgba(232, 225, 213, 0.45)',
+                  }}
+                >
+                  {item.highlights.map((hl, hIdx) => (
+                    <span
+                      key={hIdx}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        color: 'var(--text-secondary)',
+                        background: 'var(--bg-secondary)',
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                      }}
+                    >
+                      <Check size={11} color="var(--primary)" />
+                      <span>{hl}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
             );
@@ -269,15 +333,46 @@ export default function WhyUs() {
       </div>
 
       <style jsx>{`
-        .why-us-card:hover {
-          transform: translateY(-2px);
-          border-color: var(--primary);
-          box-shadow: 0 10px 24px -10px rgba(45, 90, 67, 0.12);
+        .why-us-bento-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 20px;
+          margin-bottom: 36px;
         }
-        @media (max-width: 768px) {
-          .why-us-grid {
-            grid-template-columns: 1fr !important;
+        .why-us-card-top {
+          grid-column: span 3;
+        }
+        .why-us-card-bottom {
+          grid-column: span 2;
+        }
+        .why-us-card:hover {
+          transform: translateY(-3px);
+          border-color: var(--primary);
+          box-shadow: 0 12px 28px -10px rgba(45, 90, 67, 0.14);
+        }
+        @media (max-width: 960px) {
+          .why-us-bento-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 16px !important;
+          }
+          .why-us-card-top {
+            grid-column: span 1 !important;
+          }
+          .why-us-card-bottom {
+            grid-column: span 1 !important;
+          }
+          .why-us-card-bottom:last-child {
+            grid-column: span 2 !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .why-us-bento-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .why-us-card-top,
+          .why-us-card-bottom,
+          .why-us-card-bottom:last-child {
+            grid-column: span 1 !important;
           }
           .why-us-cta-bar {
             flex-direction: column !important;
