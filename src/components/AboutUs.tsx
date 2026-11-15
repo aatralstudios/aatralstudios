@@ -229,31 +229,34 @@ export default function AboutUs() {
                 {/* Member Header with Portrait */}
                 <div style={{ padding: '24px 24px 18px 24px', borderBottom: '1px solid var(--border-subtle)' }}>
                   <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }} className="member-hero-row">
-                    {/* Portrait Photo */}
+                    {/* Passport Size Portrait Photo */}
                     <div
                       style={{
-                        width: '92px',
-                        height: '92px',
-                        borderRadius: '16px',
+                        width: '100px',
+                        height: '128px',
+                        borderRadius: '8px',
                         overflow: 'hidden',
                         flexShrink: 0,
-                        border: '2px solid var(--border-subtle)',
-                        background: 'var(--bg-secondary)',
-                        boxShadow: '0 4px 12px rgba(24, 35, 30, 0.08)',
+                        border: '1px solid rgba(24, 35, 30, 0.16)',
+                        background: '#FFFFFF',
+                        padding: '3px',
+                        boxShadow: '0 4px 14px rgba(24, 35, 30, 0.08), 0 1px 3px rgba(24, 35, 30, 0.05)',
                       }}
+                      className="passport-photo-frame"
                     >
                       <picture>
                         <source srcSet={member.photoWebp} type="image/webp" />
                         <img
                           src={member.photo}
                           alt={`${member.name} — ${member.role} at Aatral Studios`}
-                          width={184}
-                          height={184}
+                          width={200}
+                          height={256}
                           style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
-                            objectPosition: 'center 20%',
+                            objectPosition: 'center top',
+                            borderRadius: '6px',
                             display: 'block',
                           }}
                           loading="lazy"
@@ -490,9 +493,14 @@ export default function AboutUs() {
             text-align: center !important;
           }
           .member-hero-row {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 12px !important;
+            align-items: center !important;
+            gap: 16px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .passport-photo-frame {
+            width: 86px !important;
+            height: 110px !important;
           }
         }
       `}</style>
