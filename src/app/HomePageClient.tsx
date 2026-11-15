@@ -8,7 +8,6 @@ import IndustriesPreview from '@/components/IndustriesPreview';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import Portfolio from '@/components/Portfolio';
 import WhyUs from '@/components/WhyUs';
-import AboutPreview from '@/components/AboutPreview';
 import ContactFunnel from '@/components/ContactFunnel';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -53,10 +52,7 @@ export default function HomePageClient() {
         {/* 5. Why Choose Aatral Studios: Value & Commitments */}
         <WhyUs />
 
-        {/* 6. About Us: Teaser with Link to Full Dedicated Page */}
-        <AboutPreview />
-
-        {/* 7. Contact Funnel: Direct Project Brief Intake */}
+        {/* 6. Contact Funnel: Direct Project Brief Intake */}
         <ContactFunnel />
       </main>
 
