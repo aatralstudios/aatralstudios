@@ -234,6 +234,7 @@ export default function IndustriesWeServe({ isPage = false }: { isPage?: boolean
   return (
     <section
       id="industries"
+      className="industries-section"
       style={{
         padding: '80px 0',
         position: 'relative',
@@ -774,6 +775,9 @@ export default function IndustriesWeServe({ isPage = false }: { isPage?: boolean
           }
         }
         @media (max-width: 768px) {
+          .industries-section {
+            padding: 44px 0 54px 0 !important;
+          }
           .industry-banner-box {
             height: auto !important;
             min-height: 190px !important;

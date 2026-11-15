@@ -81,6 +81,7 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
   return (
     <section
       id="about"
+      className="about-section"
       style={{
         padding: isPage ? '40px 0 100px 0' : '90px 0 100px 0',
         position: 'relative',
@@ -91,7 +92,7 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
     >
       <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px auto' }}>
+        <div className="about-header" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px auto' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -475,6 +476,12 @@ export default function AboutUs({ isPage = false }: { isPage?: boolean } = {}) {
           box-shadow: 0 12px 28px -10px rgba(45, 90, 67, 0.12);
         }
         @media (max-width: 768px) {
+          .about-section {
+            padding: 40px 0 60px 0 !important;
+          }
+          .about-header {
+            margin-bottom: 24px !important;
+          }
           .about-mission-card {
             flex-direction: column !important;
             align-items: flex-start !important;

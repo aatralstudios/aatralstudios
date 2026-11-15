@@ -22,7 +22,7 @@ export default function AboutClient() {
       {/* Global Scroll-Driven 3D Canvas */}
       <ScrollDesignCanvas />
 
-      <main id="main-content" tabIndex={-1} style={{ position: 'relative', zIndex: 2, paddingTop: '100px' }}>
+      <main id="main-content" className="page-main-container" tabIndex={-1} style={{ position: 'relative', zIndex: 2, paddingTop: '100px' }}>
         {/* Breadcrumb Header */}
         <div className="container" style={{ maxWidth: '1120px', paddingTop: '16px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--text-muted)' }}>
@@ -54,6 +54,14 @@ export default function AboutClient() {
 
       <Footer />
       <FloatingLeadDock />
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .page-main-container {
+            padding-top: 75px !important;
+          }
+        }
+      `}</style>
     </SmoothScroll>
   );
 }

@@ -244,54 +244,64 @@ export default function Navbar() {
             top: '100%',
             left: 0,
             right: 0,
-            background: '#FFFFFF',
+            background: 'rgba(255, 255, 255, 0.98)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
             borderBottom: '1px solid var(--border-subtle)',
-            padding: '24px',
+            padding: '16px 20px 24px 20px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '14px',
-            boxShadow: '0 16px 36px rgba(24, 35, 30, 0.08)',
+            gap: '2px',
+            boxShadow: '0 16px 36px rgba(24, 35, 30, 0.12)',
+            maxHeight: 'calc(100vh - 65px)',
+            overflowY: 'auto',
           }}
         >
           <a
             href="#process"
             onClick={(e) => handleNavJump(e, 'process')}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             How We Work
           </a>
           <a
             href="#portfolio"
             onClick={(e) => handleNavJump(e, 'portfolio')}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             Portfolio
           </a>
           <a
             href="/industries"
             onClick={() => setMobileMenuOpen(false)}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             Industries We Serve
           </a>
           <a
             href="#why-us"
             onClick={(e) => handleNavJump(e, 'why-us')}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             Why Choose Us
           </a>
           <a
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             About Us
           </a>
           <a
             href="/faq"
             onClick={() => setMobileMenuOpen(false)}
-            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}
+            className="mobile-nav-item"
+            style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '15px', fontWeight: 600, padding: '10px 4px', borderBottom: '1px solid rgba(232, 225, 213, 0.4)', minHeight: '44px', display: 'flex', alignItems: 'center' }}
           >
             FAQ
           </a>
@@ -303,13 +313,15 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '10px 14px',
+              padding: '12px 14px',
               borderRadius: '8px',
               background: 'var(--primary-soft)',
               color: 'var(--primary)',
               textDecoration: 'none',
-              fontSize: '14px',
+              fontSize: '13.5px',
               fontWeight: 600,
+              marginTop: '10px',
+              minHeight: '44px',
             }}
           >
             <WhatsAppIcon size={16} color="#25D366" />
@@ -320,7 +332,7 @@ export default function Navbar() {
             href="#contact"
             onClick={(e) => handleNavJump(e, 'contact')}
             className="btn-glow"
-            style={{ textAlign: 'center', marginTop: '4px' }}
+            style={{ textAlign: 'center', marginTop: '8px', padding: '12px', minHeight: '46px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             Start a Project
           </a>

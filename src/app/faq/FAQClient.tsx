@@ -138,6 +138,7 @@ export default function FAQClient() {
 
       <main
         id="main-content"
+        className="faq-main-wrapper"
         tabIndex={-1}
         style={{
           position: 'relative',
@@ -606,6 +607,10 @@ export default function FAQClient() {
           border-color: rgba(45, 90, 67, 0.4);
         }
         @media (max-width: 768px) {
+          .faq-main-wrapper {
+            padding-top: 85px !important;
+            padding-bottom: 50px !important;
+          }
           .faq-answer-body {
             padding-left: 24px !important;
           }

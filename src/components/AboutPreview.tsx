@@ -40,6 +40,7 @@ export default function AboutPreview() {
   return (
     <section
       id="about"
+      className="about-preview-section"
       style={{
         padding: '90px 0',
         position: 'relative',
@@ -50,7 +51,7 @@ export default function AboutPreview() {
     >
       <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px auto' }}>
+        <div className="about-preview-header" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px auto' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -337,14 +338,23 @@ export default function AboutPreview() {
 
       <style jsx>{`
         @media (max-width: 768px) {
+          .about-preview-section {
+            padding: 48px 0 !important;
+          }
+          .about-preview-header {
+            margin-bottom: 22px !important;
+          }
           .about-preview-mission-card {
             flex-direction: column !important;
             align-items: flex-start !important;
+            padding: 18px 16px !important;
             gap: 12px !important;
+            margin-bottom: 22px !important;
           }
           .about-preview-cta-bar {
             flex-direction: column !important;
             align-items: flex-start !important;
+            padding: 16px 18px !important;
           }
           .about-preview-cta-bar a {
             width: 100% !important;

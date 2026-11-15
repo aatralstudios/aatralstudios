@@ -88,6 +88,7 @@ export default function ProcessTimeline() {
   return (
     <section
       id="process"
+      className="process-section"
       style={{
         padding: '90px 0',
         position: 'relative',
@@ -98,7 +99,7 @@ export default function ProcessTimeline() {
     >
       <div className="container" style={{ maxWidth: '1160px' }}>
         {/* Section Header */}
-        <div style={{ maxWidth: '720px', marginBottom: '56px', textAlign: 'left' }}>
+        <div className="process-header" style={{ maxWidth: '720px', marginBottom: '56px', textAlign: 'left' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -331,6 +332,20 @@ export default function ProcessTimeline() {
           .process-roadmap-grid {
             grid-template-columns: 1fr !important;
             gap: 16px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .process-section {
+            padding: 48px 0 !important;
+          }
+          .process-header {
+            margin-bottom: 24px !important;
+          }
+          .process-roadmap-grid {
+            gap: 12px !important;
+          }
+          .process-step-card {
+            padding: 18px 16px !important;
           }
         }
       `}</style>

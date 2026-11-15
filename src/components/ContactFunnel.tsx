@@ -763,28 +763,27 @@ export default function ContactFunnel() {
         }
         @media (max-width: 768px) {
           .contact-section {
-            padding: 70px 0 80px 0 !important;
+            padding: 48px 0 54px 0 !important;
           }
           .contact-section-header {
-            padding: 24px 18px !important;
-            margin-bottom: 24px !important;
+            padding: 20px 16px !important;
+            margin-bottom: 20px !important;
           }
           .contact-form-card,
           .contact-sidebar-card {
-            padding: 22px 18px !important;
+            padding: 20px 16px !important;
             border-radius: 16px !important;
           }
         }
         @media (max-width: 640px) {
           .contact-headline {
-            font-size: clamp(1rem, 4.5vw, 1.65rem) !important;
+            font-size: clamp(1.4rem, 5vw, 1.85rem) !important;
             letter-spacing: -0.6px !important;
-            white-space: nowrap !important;
-            line-height: 1.2 !important;
+            line-height: 1.22 !important;
           }
           .contact-section-header {
-            padding: 20px 12px !important;
-            margin-bottom: 20px !important;
+            padding: 18px 12px !important;
+            margin-bottom: 18px !important;
           }
         }
         @media (max-width: 600px) {

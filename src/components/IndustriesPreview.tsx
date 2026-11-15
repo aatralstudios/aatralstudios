@@ -59,6 +59,7 @@ export default function IndustriesPreview() {
   return (
     <section
       id="industries"
+      className="industries-preview-section"
       style={{
         padding: '90px 0',
         position: 'relative',
@@ -69,7 +70,7 @@ export default function IndustriesPreview() {
     >
       <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px auto' }}>
+        <div className="industries-preview-header" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px auto' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -259,9 +260,16 @@ export default function IndustriesPreview() {
 
       <style jsx>{`
         @media (max-width: 768px) {
+          .industries-preview-section {
+            padding: 48px 0 !important;
+          }
+          .industries-preview-header {
+            margin-bottom: 22px !important;
+          }
           .industries-preview-cta-bar {
             flex-direction: column !important;
             align-items: flex-start !important;
+            padding: 18px 16px !important;
           }
           .industries-preview-cta-bar div:last-child {
             width: 100% !important;

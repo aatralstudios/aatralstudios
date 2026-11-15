@@ -80,6 +80,7 @@ export default function WhyUs() {
   return (
     <section
       id="why-us"
+      className="why-us-section"
       style={{
         padding: '90px 0',
         position: 'relative',
@@ -90,7 +91,7 @@ export default function WhyUs() {
     >
       <div className="container" style={{ maxWidth: '1120px' }}>
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px auto' }}>
+        <div className="why-us-header" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px auto' }}>
           <div
             style={{
               display: 'inline-flex',
@@ -363,6 +364,24 @@ export default function WhyUs() {
           }
           .why-us-card-bottom:last-child {
             grid-column: span 2 !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .why-us-section {
+            padding: 48px 0 !important;
+          }
+          .why-us-header {
+            margin-bottom: 22px !important;
+          }
+          .why-us-card {
+            padding: 18px 16px !important;
+          }
+          .why-us-bento-grid {
+            gap: 12px !important;
+            margin-bottom: 22px !important;
+          }
+          .why-us-cta-bar {
+            padding: 16px 18px !important;
           }
         }
         @media (max-width: 640px) {

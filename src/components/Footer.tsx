@@ -15,6 +15,7 @@ export default function Footer() {
 
   return (
     <footer
+      className="footer-section"
       style={{
         background: 'linear-gradient(180deg, rgba(243, 236, 228, 0.75) 0%, rgba(250, 248, 245, 0.95) 100%)',
         borderTop: '1px solid var(--border-subtle)',
@@ -25,6 +26,7 @@ export default function Footer() {
     >
       <div className="container">
         <div
+          className="footer-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -219,6 +221,18 @@ export default function Footer() {
       </div>
 
       <PrivacyModal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} />
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .footer-section {
+            padding: 44px 0 24px 0 !important;
+          }
+          .footer-grid {
+            gap: 24px !important;
+            margin-bottom: 28px !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
