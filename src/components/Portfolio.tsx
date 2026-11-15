@@ -16,8 +16,13 @@ import {
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 
-export default function Portfolio() {
+interface PortfolioProps {
+  isPage?: boolean;
+}
+
+export default function Portfolio({ isPage = false }: PortfolioProps) {
   const [deviceMode, setDeviceMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+  const HeadingTag = isPage ? 'h1' : 'h2';
 
   // Device width constraints for the interactive simulator
   const deviceWidthMap = {
@@ -82,7 +87,7 @@ export default function Portfolio() {
             <span>Featured Client Work</span>
           </div>
 
-          <h2
+          <HeadingTag
             className="font-display"
             style={{
               fontSize: 'clamp(1.9rem, 3.2vw, 2.7rem)',
@@ -95,7 +100,7 @@ export default function Portfolio() {
           >
             Real Digital Experiences. <br />
             <span className="gradient-accent">Live and Proven.</span>
-          </h2>
+          </HeadingTag>
 
           <p
             style={{

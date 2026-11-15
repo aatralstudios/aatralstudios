@@ -116,26 +116,16 @@ async function run() {
       html.includes('hero-tagline') || html.includes('modern, high-performing websites');
     recordTest('Hero Section', 'Hero tagline present', hasTagline, 'Tagline class & copy present');
 
-    const hasCTAs = html.includes('Start Your Project') && html.includes('Explore Industries');
+    const hasCTAs = html.includes('Start Your Project') && (html.includes('Portfolios') || html.includes('/portfolio'));
     recordTest('Hero Section', 'Hero CTA buttons present', hasCTAs, 'Both CTAs present');
 
-    // Verify Industries We Serve Section
-    const hasIndustries =
-      html.includes('Industries We Serve') || html.includes('Bespoke Websites for Every Business Sector');
-    recordTest('Industries Section', 'Industries section rendered', hasIndustries, 'Section exists');
+    // Verify Industries Navigation on Homepage
+    const hasIndustriesNav = html.includes('/industries');
+    recordTest('Industries Navigation', 'Industries page cleanly linked in navigation and footer', hasIndustriesNav, 'Industries link verified');
 
-    const hasOutcome = html.includes('The Commercial Outcome');
-    recordTest('Industries Section', 'Commercial Outcome element present', hasOutcome, 'Outcome banner verified');
-
-    const hasFeatures = html.includes('Tailored Features Included');
-    recordTest('Industries Section', 'Tailored Features checklist element present', hasFeatures, 'Features box verified');
-
-    const hasWhatsApp = html.includes('WhatsApp Quick Chat') || html.includes('wa.me/918220820236');
-    recordTest('Industries Section', 'WhatsApp quick chat button present', hasWhatsApp, 'Direct WhatsApp link verified');
-
-    // Verify Portfolio Section & RaRa Cafe
-    const hasPortfolio = html.includes('RaRa Cafe') && html.includes('aatralstudios.github.io/rara_cafe');
-    recordTest('Portfolio Section', 'Featured client portfolio (RaRa Cafe) live and rendered', hasPortfolio, 'RaRa Cafe portfolio integrated');
+    // Verify Portfolio Navigation on Homepage
+    const hasPortfolioNav = html.includes('/portfolio');
+    recordTest('Portfolio Navigation', 'Portfolio page cleanly linked in hero CTA and navigation', hasPortfolioNav, 'Portfolio link verified');
 
     // Verify Why Choose Us Section
     const hasWhyUs =
@@ -157,7 +147,7 @@ async function run() {
       'Nav links present',
       (html.includes('/industries') || html.includes('#industries')) &&
         html.includes('#contact') &&
-        html.includes('#portfolio') &&
+        (html.includes('/portfolio') || html.includes('#portfolio')) &&
         html.includes('#why-us') &&
         (html.includes('/about') || html.includes('#about')) &&
         html.includes('/faq'),
@@ -287,6 +277,30 @@ async function run() {
       aboutHtml.includes('Our Mission');
     recordTest('About Founders', 'Founders details, degrees, cities & mission rendered', hasFoundersDetails, 'Founders & Mission verified');
 
+    // Dedicated Portfolio Route (/portfolio) SEO & Content
+    console.log(`\n${colors.bold}--- Dedicated Portfolio Route (/portfolio) SEO & Content ---${colors.reset}`);
+    const portfolioRes = await fetch(`${BASE_URL}/portfolio`);
+    const portfolioHtml = await portfolioRes.text();
+    recordTest('Portfolio Route', 'Portfolio page returns HTTP 200 OK', portfolioRes.status === 200, `Status: ${portfolioRes.status}`);
+
+    const portfolioH1Count = (portfolioHtml.match(/<h1[\s>]/gi) || []).length;
+    recordTest('Portfolio SEO Headings', 'Exactly one <h1> heading on Portfolio page', portfolioH1Count === 1, `H1 Count: ${portfolioH1Count}`);
+
+    const hasPortfolioTitle = portfolioHtml.includes('Portfolio') && portfolioHtml.includes('Aatral Studios');
+    recordTest('Portfolio SEO Title', 'Portfolio page has unique page title', hasPortfolioTitle, 'Portfolio Title verified');
+
+    const hasPortfolioDescription = portfolioHtml.includes('name="description"') && portfolioHtml.includes('RaRa Cafe');
+    recordTest('Portfolio SEO Meta Description', 'Portfolio page has unique meta description', hasPortfolioDescription, 'Portfolio Meta description verified');
+
+    const hasPortfolioJsonLd = portfolioHtml.includes('CollectionPage') && portfolioHtml.includes('RaRa Cafe');
+    recordTest('Portfolio Schema.org', 'Portfolio page has valid CollectionPage JSON-LD schema', hasPortfolioJsonLd, 'CollectionPage schema verified');
+
+    const hasPortfolioProject =
+      portfolioHtml.includes('RaRa Cafe') &&
+      portfolioHtml.includes('aatralstudios.github.io/rara_cafe') &&
+      portfolioHtml.includes('Karappakkam');
+    recordTest('Portfolio Client Project', 'Featured client project (RaRa Cafe) live and interactive', hasPortfolioProject, 'RaRa Cafe details verified');
+
     // SUITE 2: SEO, Sitemap & Robots
     console.log(`\n${colors.bold}--- Suite 2: SEO, Sitemap & Robots ---${colors.reset}`);
     const robotsRes = await fetch(`${BASE_URL}/robots.txt`);
@@ -306,6 +320,7 @@ async function run() {
       sitemapRes.status === 200 &&
         sitemapText.includes('<urlset') &&
         sitemapText.includes('aatralstudios') &&
+        sitemapText.includes('/portfolio') &&
         sitemapText.includes('/industries') &&
         sitemapText.includes('/about') &&
         sitemapText.includes('/faq'),

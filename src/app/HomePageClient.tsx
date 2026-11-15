@@ -4,9 +4,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import IndustriesPreview from '@/components/IndustriesPreview';
 import ProcessTimeline from '@/components/ProcessTimeline';
-import Portfolio from '@/components/Portfolio';
 import WhyUs from '@/components/WhyUs';
 import ContactFunnel from '@/components/ContactFunnel';
 import Footer from '@/components/Footer';
@@ -43,13 +41,7 @@ export default function HomePageClient() {
         {/* 2. 4-Stage Process: How We Work With You */}
         <ProcessTimeline />
 
-        {/* 3. Featured Portfolio Work: Live Client Deployments */}
-        <Portfolio />
-
-        {/* 4. Industries We Serve: Teaser with Link to Full Dedicated Page */}
-        <IndustriesPreview />
-
-        {/* 5. Why Choose Aatral Studios: Value & Commitments */}
+        {/* 3. Why Choose Aatral Studios: Value & Commitments */}
         <WhyUs />
 
         {/* 6. Contact Funnel: Direct Project Brief Intake */}

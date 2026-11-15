@@ -142,11 +142,11 @@ export default function Hero() {
             </a>
 
             <a
-              href="/industries"
+              href="/portfolio"
               className="btn-secondary"
               style={{ padding: '11px 20px', fontSize: '13.5px' }}
             >
-              <span>Explore Industries &rarr;</span>
+              <span>Portfolios &rarr;</span>
             </a>
           </div>
 
