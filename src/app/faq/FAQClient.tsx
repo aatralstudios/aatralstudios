@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import FloatingLeadDock from '@/components/FloatingLeadDock';
-import ScrollDesignCanvas from '@/components/ScrollDesignCanvas';
+
+// Code-splitting heavy Three.js WebGL and deferred dock
+const ScrollDesignCanvas = dynamic(() => import('@/components/ScrollDesignCanvas'), { ssr: false });
+const FloatingLeadDock = dynamic(() => import('@/components/FloatingLeadDock'), { ssr: false });
 import {
   HelpCircle,
   Clock,

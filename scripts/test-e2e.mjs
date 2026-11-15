@@ -279,7 +279,9 @@ async function run() {
       { path: '/images/industries/corporate.webp', expectedType: 'image/webp' },
       { path: '/images/industries/fitness.webp', expectedType: 'image/webp' },
       { path: '/images/team/vasanthabalan.jpg', expectedType: 'image/jpeg' },
+      { path: '/images/team/vasanthabalan.webp', expectedType: 'image/webp' },
       { path: '/images/team/sudharshini.jpg', expectedType: 'image/jpeg' },
+      { path: '/images/team/sudharshini.webp', expectedType: 'image/webp' },
     ];
 
     for (const asset of assets) {

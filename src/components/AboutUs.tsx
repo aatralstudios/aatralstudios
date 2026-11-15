@@ -21,6 +21,7 @@ interface TeamMember {
   education: string;
   city: string;
   photo: string;
+  photoWebp: string;
   bio: string;
   expertise: string[];
   responsibilities: string[];
@@ -34,6 +35,7 @@ const teamMembers: TeamMember[] = [
     education: 'B.E. Computer Science & Engineering (CSE)',
     city: 'Chennai',
     photo: '/images/team/vasanthabalan.jpg',
+    photoWebp: '/images/team/vasanthabalan.webp',
     bio: 'Systems engineer focused on high-performance web architecture, sub-second asset delivery, and interactive 3D WebGL experiences.',
     expertise: [
       'Next.js 15 & React 19 Architecture',
@@ -55,6 +57,7 @@ const teamMembers: TeamMember[] = [
     education: 'B.E. Computer Science & Engineering (CSE)',
     city: 'Chengalpattu',
     photo: '/images/team/sudharshini.jpg',
+    photoWebp: '/images/team/sudharshini.webp',
     bio: 'Product developer dedicated to mobile-first interfaces, intuitive user flows, and turning complex business services into clear client experiences.',
     expertise: [
       'Modern Frontend (React.js & Tailwind CSS)',
@@ -239,20 +242,24 @@ export default function AboutUs() {
                         boxShadow: '0 4px 12px rgba(24, 35, 30, 0.08)',
                       }}
                     >
-                      <img
-                        src={member.photo}
-                        alt={`${member.name} - ${member.role}`}
-                        width={184}
-                        height={184}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          objectPosition: 'center 20%',
-                          display: 'block',
-                        }}
-                        loading="lazy"
-                      />
+                      <picture>
+                        <source srcSet={member.photoWebp} type="image/webp" />
+                        <img
+                          src={member.photo}
+                          alt={`${member.name} - ${member.role}`}
+                          width={184}
+                          height={184}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'center 20%',
+                            display: 'block',
+                          }}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                     </div>
 
                     <div style={{ flex: 1, minWidth: 0 }}>
